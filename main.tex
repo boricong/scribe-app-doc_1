@@ -1,231 +1,243 @@
-\documentclass[
-    a4paper,
-    man,
-    floatsintext
-]{glossaPX2}
-
-\usepackage[T1]{fontenc}
-\usepackage[american]{babel}
-\usepackage[style=apa,backend=biber,sorting=nyt]{biblatex}
-\NewBibliographyString{unpublished}
-\DefineBibliographyStrings{english}{
-  unpublished = {Unpublished},
-}
-\DefineBibliographyStrings{american}{
-  unpublished = {Unpublished},
-}
-
-\usepackage[font={footnotesize,it}]{caption}
-\usepackage{csquotes}
-\usepackage{booktabs} 
-\usepackage{tabularx}
-\usepackage{linguex} 
-\usepackage{cgloss}
-\usepackage{amsmath}
+% Template for the Journal of Computational Science and Applications (JCSA)
+% Published by the University of Lahore -- ISSN 2710-3102
+% Official author guidelines: https://journals.uol.edu.pk/JCSA/Author-Guideline
+\documentclass[twoside,twocolumn,10pt]{article}
+\usepackage{lipsum}  % For sample/placeholder text
+\usepackage{fancyhdr}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{abstract}
 \usepackage{graphicx}
-\graphicspath{ {./graphics/} }
-%\usepackage{times}
-\usepackage{ragged2e}
-\usepackage{hyperref}
-\usepackage{enumitem}
-\newcommand{\quotes}[1]{``#1''}
-\usepackage[title]{appendix}
-\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{titlesec}
+\usepackage{ragged2e}  % Provides the justifying command
+\usepackage{amssymb}  % For additional symbols
+\usepackage{parskip}  % Automatically handles paragraph spacing
+\usepackage{amsmath}  % For advanced math environments
+\usepackage{newtxtext}  % Times New Roman font
+\usepackage{booktabs}  % For improved table appearance
+\usepackage{array}     % For customizing table columns
 
-\providecommand{\firstrefdash}{} %removes dash in references to examples, i.e. (1a) instead of (1-a)
+% The starting page number is normally assigned by the editorial office
+% once the article is scheduled into a specific issue. Authors can leave
+% this at 1; production will update it if required.
+\setcounter{page}{1}
 
+% Define custom column types for better alignment and spacing
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}} % Left aligned column
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}   % Center aligned column
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}  % Right aligned column
 
+\usepackage[font=footnotesize, labelfont=bf, justification=raggedright, format=plain]{caption}
 
-\addbibresource{sample.bib}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\title[Sample article in Glossa Psycholinguistics]{Sample article in Glossa Psycholinguistics: Using the \LaTeX glossaPX2 class}
-\author[Author1, Author2] % LEAVE ANONYMOUS
-{\spauthor{Author\\
-  \institute{University of the North}\\
-  \small{email@example.edu, \\ORCID: 0000-0000-0000-0000}
-  }
-  \AND
-\spauthor{Author 2\\
-  \institute{University of the South}\\
-  \small{email@example.edu, \\ORCID: 0000-0000-0000-0000}
-  }
+\captionsetup[table]{
+    labelsep=period,               % Period after label for tables
+    justification=raggedright      % Ensure left alignment of captions
 }
+
+\captionsetup[figure]{
+    labelsep=period,               % Period after label for figures
+    justification=raggedright      % Ensure left alignment of captions
+}
+
+\usepackage[backend=bibtex,style=ieee]{biblatex}
+\addbibresource{references.bib}  % Add your .bib file
+% Customizing bibliography heading
+\defbibheading{bibliography}[\refname]{%
+  \section{\MakeUppercase{REFERENCES}}}
+
+% Set page margins
+\geometry{
+    a4paper,
+    left=0.8in,
+    right=0.8in,
+    top=1in,
+    bottom=1in
+}
+
+% Increase space between columns
+\setlength{\columnsep}{15pt}
+
+% Define the centred abstract heading
+\renewcommand{\abstractname}{\hspace{1.3em}\textbf{Abstract}}
+
+\titleformat{\section}{\large\bfseries\uppercase}{\thesection.}{1em}{}
+
+\titleformat{\subsection}{\normalfont\bfseries\flushleft}{\thesubsection.}{1em}{}
+
+\titleformat{\subsubsection}{\normalfont\bfseries\itshape\flushleft}{\thesubsubsection}{1em}{}
+
+% Set font sizes for abstract
+\renewcommand{\abstractnamefont}{\normalfont\fontsize{14}{20}\bfseries}
+\renewcommand{\absnamepos}{flushleft}
+\renewcommand{\abstracttextfont}{\normalfont\fontsize{11}{13}\selectfont}
+
+% Keywords environment
+\newcommand{\keywordsname}{Keywords}
+\newenvironment{keywords}
+  {\par\noindent\hspace{2em}\textbf{\keywordsname:}}
+  {\par}
+
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\sloppy
+
+% Set up header and footer styles
+\pagestyle{fancy}
+\fancyhf{}  % Clear default header and footer
+
+% Odd page headers -- replace with a short running form of your title
+\fancyhead[C]{\small Running Title of the Paper}
+
+% Even page headers -- replace with the first author's surname and year
+\fancyhead[CE]{\small Author Surname et al. (Year)}
+
+% Footer: Page numbers only (on all pages except the first one)
+\fancyfoot[C]{\thepage}
+
+% First page custom header/footer
+\fancypagestyle{firstpage}{
+  \fancyhf{}  % Clear header and footer
+  \fancyhead[LO]{\small Volume X, Issue Y, Year}  % Left header for first page
+  \fancyhead[RO]{\small J. Comput. Sci. Appl.}  % Right header for first page
+  \fancyfoot[L]{\footnotesize Received: Month Year; Revised: Month Year; Accepted: Month Year\\\textsuperscript{*}Corresponding Author: Full Name \textless email@example.com\textgreater}
+   \fancyfoot[R]{\footnotesize \copyright\ Year by the Author(s). Published by JCSA,\\\textsuperscript{*} under the CC-BY license }
+  \renewcommand{\headrulewidth}{0.4pt}  % Add header line
+  \renewcommand{\footrulewidth}{0.4pt}  % Add footer line
+}
+
+\title{\fontsize{16}{20}\selectfont\textbf{Title of the Manuscript Goes Here}}
+\author{
+    \fontsize{12}{14}\selectfont
+    First Author\textsuperscript{1*}, Second Author\textsuperscript{2}\\[1ex]
+    \fontsize{12}{14}\selectfont
+    \textsuperscript{1}Department Name, University Name, City, Country \\
+   \textsuperscript{2}Department Name, University Name, City, Country
+}
+\date{}
 
 \begin{document}
-\maketitle
-$<<$\textit{This author section should be left as is during peer review to ensure anonymity.}\\
 
-\textit{Once accepted, the information should be filled in. At that point, please make sure that it matches exactly with the information you entered on Janeway prior to submission (or updated as needed), including the name under which you publish and your official department and institution names (e.g., “Department of Linguistics”, not “Ling”). Affiliation details can be given in the language of the institution—i.e., they do not need to be translated to English.}$>>$
+\twocolumn[
+\begin{@twocolumnfalse}
+% Change "Research Article" to the appropriate article type if needed
+% (e.g. Review Article, Short Communication).
+\vspace{-0.5cm}  % Adjust spacing as needed between header and "Research Article"
+\raggedright
+
+{\fontsize{11}{13}\selectfont{Research Article}}
+\vspace{-0.8cm}  % Adjust spacing between "Research Article" and title
+
+% Now, insert the title and the author information
+\maketitle
+
+\thispagestyle{firstpage} % Apply custom header/footer for first page
 \begin{abstract}
-The abstract text goes here.
+\fontsize{11}{13}\selectfont
+\vspace{1em}
+\justifying
+\textit{[Replace this paragraph with your abstract. The abstract should be a single, self-contained paragraph of approximately 150--250 words summarizing the purpose of the study, the methodology used, the principal results, and the main conclusions. Avoid citations, footnotes, and undefined abbreviations in the abstract.]}
+
+\vspace{-0.1cm}
+\noindent\textbf{keywords}
+ Keyword one, Keyword two, Keyword three, Keyword four.
+
 \end{abstract}
 
-\begin{keywords}
-  keyword 1; keyword 2; keyword 3; keyword 4
-\end{keywords}
-
-$<<$\textit{Word count:\\ Enter your word count here, excluding references, but including appendices. Word count should not exceed 15,000 for regular submissions and 4,000 for brief submissions. (To be removed post-acceptance for typesetting)} $>>$
-
+\vspace{1cm}
+\end{@twocolumnfalse}
+]
 \section{Introduction}
-\label{intro}
-Begin the manuscript text here. This document uses the Glossa Psycholinguistics \LaTeX template. It is intended to show how to use the \texttt{glossaPX2} class file to format your documents to conform to the \textit{Glossa Psycholinguistics} stylesheet.\footnote{The footnote number should follow any punctuation. A footnote callout that appears with a dash should be inserted before the dash. A footnote inside parenthetical material is placed within the parentheses. There is no space before the number. For the footnote itself, indent the first line of each paragraph. A line should be placed above the footnote text to separate it from the regular text. A footnote that is referred to later in the text should be referred to by its footnote number (e.g., ``see Footnote 1'').} 
+\fontsize{12}{14}\selectfont
+\textit{[Replace this section with your Introduction. Provide sufficient background to place the work in context, state the problem being addressed, and summarize the objectives and contributions of the study. The example paragraph below shows the default paragraph style, justification, and hyphenation settings used throughout the template.]}
 
-The \textit{Glossa Psycholinguistics} style sheet was adapted from the \textit{Glossa} stylesheet by Alexandre Cremers. It was subsequently updated by Andrea Beltrama, Brian Dillon, and Jan Chrom\'{y}. 
+\lipsum[1]
 
-\textit{Glossa Psycholinguistics} uses APA formatting of all references. In \LaTeX, use \texttt{parentcite} (or equivalent) for parenthetical citations as follows: Tanenhaus and Trueswell provide a thorough discussion of visual world eye-tracking methodology \parencite{tanenhaus2005}. Multiple articles in parenthetical citations should be ordered alphabetically by the last author's surname: \parencite{lago_spanish_2015,wagers_agreement_2009}. For in-text citation, please use \texttt{textcite} (or equivalent) as follows: \textcite{frazier1979} discussed syntactic processing strategies.\footnote{Note the slightly different citation styles for published and unpublished dissertations as per APA 7th edition, , illustrated for the same entry in bibliography as \textcite{frazier1979,frazier1979u}; the unpublished case should be treated as the exception, as dissertations count as published if available in a database, repository or archive. In \LaTeX, include 'howpublished = \{unpublished\}' in bibliography entry for unpublished ones.} For further examples of the APA format for in-text citations and entries in the list of references, see: \url{https://apastyle.apa.org/style-grammar-guidelines/references/examples}.
+In-text citations use the \verb|\cite| command and follow the IEEE numbered style configured for this template, e.g., a single reference \cite{1_Su2022} or multiple references \cite{2_Lind2021, 3_Kuwahara2022}.
 
-In \ref{ex1} you may see an example of an in-line text example:
+\section{Literature Review}
+\fontsize{12}{14}\selectfont
+\textit{[Replace this section with a review of the relevant prior literature, positioning your contribution relative to existing work.]}
 
-\ex. This is an example sentence.\label{ex1}
+\lipsum[2-3]
 
-\subsection{Use of different typefaces in Glossa Psycholinguistics}
+\section{Methodology and Data}
+\textit{[Replace this section with a description of your data sources and methodology.]}
+\fontsize{12}{14}\selectfont
+\lipsum[4]
 
-For the first mention of a technical term and for object-language forms (letters, words, phrases, sentences) cited within the text, please use italics. The exception is when they are phonetic transcriptions or phonological representations in IPA. For example, Latin \textit{habere} is not cognate with Old English \textit{hafian}.
+\subsection{Example Subsection}
+\fontsize{12}{14}\selectfont
+\textit{[Use subsections to organize the methodology, e.g., data description, variable construction, and model specification.]}
 
-Italics should also be used for emphasis of a particular word that is not a technical term, for emphasis within a quotation, with the indication [emphasis mine/ours] at the end of the quotation, and for the name of the language in examples.
+\lipsum[5]
 
-\textbf{Boldface} can be used to draw the reader's attention to particular aspects of a linguistic example, whether within the text or as numbered examples. Full caps and underlining are not normally used for highlighting.
+\subsection{Example Second Subsection}
+\fontsize{12}{14}\selectfont
+\lipsum[6]
 
-\subsection{More details on styling}
+\subsubsection{Example Subsubsection}
 
-For in-text parentheticals, please use an \textit{n}-dash with spaces on each side. Here is an example: Syntactic processing difficulty is indexed in ERP measures -- for example, the P600 effect has been associated with the recognition of a syntactic error.
+\textit{[Subsubsections are available for finer-grained organization where needed.]}
 
-The hyphen is used to indicate that two words or morphemes are conventionally presented as a single unit, as in the case of certain compounds or common adverb-particle forms: ``well-informed,'' ``old-fashioned,'' ``bottom-up,'' etc.
+\section{Results and Discussion}
 
-Please use double quotation marks when a passage from another work is cited in the text,  and when a technical term or other expression is mentioned that the author does not want to adopt. For example: Author X writes that ``LaTeX is a useful tool for typesetting.''
+\textit{[Replace this section with your results and discussion. The example figures and table below demonstrate the recommended formatting for graphical and tabular content in this template.]}
 
-Single quotation marks are used exclusively for linguistic meanings: Latin \textit{habere} `have' is not cognate with Old English \textit{hafian} `have.'
+\lipsum[7]
 
-\section{Current study}
-\label{current}
+Figure~\ref{fig:example-one} and Figure~\ref{fig:example-two} illustrate how single-column-width figures are placed and captioned within the two-column layout. Table~\ref{tab:example-table} illustrates the recommended table style.
 
-This is a new section.
-
-\section{Our experiment}
-
-Here we describe our experiment.
-
-\subsection{Participants}
-
-Here is information about our participants. During the peer review period, remember to omit any potentially identifying information (e.g., institution from which participants were recruited).
-
-\subsection{Materials}
-
-Here is information about our experimental stimuli.
-
-\subsection{Method}
-
-Here is information about our experimental method.
-
-\subsection{Data analysis}
-
-Here we describe our data analysis. 
-
-\subsection{Results}
-
-Here are our results. When reporting numerical values, please use the \textit{n}-dash for the negative sign and to indicate a numerical range. Here is an example of a range and a negative number: Across experiments, the simple effect size ranged between 32 -- 56 ms. The average difference between conditions was --15 ms.
-
-Here is an example of a figure:
-
-\begin{figure}[ht]
-\caption{A sample figure caption. Figure captions appear below figures.}
-\includegraphics[scale=0.20]{my_curve.png}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{Figure_1_AI_vs_Renewable.png}
+\caption{Example figure demonstrating image placement and caption formatting.}
+\label{fig:example-one}
 \end{figure}
 
-
-\begin{table}[ht]
-
+\begin{figure}[h]
 \centering
-
-\caption{A sample table caption. Table captions appear above tables.}
-
-\label{tab:sample}
-
-\begin{tabular}{lcc}
-
-\toprule
-
-\textbf{Condition} & \textbf{Mean} & \textbf{SD} \\
-
-\midrule
-
-Condition A & 123 & 45 \\
-
-Condition B & 135 & 39 \\
-
-Condition C & 128 & 42 \\
-
-\bottomrule
-
-\end{tabular}
-
-\end{table}
-
-\section{Conclusion}
-
-Here is a conclusion. The conclusion must be followed by the following unnumbered sections: a data accessibility statement (required), an ethics and consent statement (required if applicable), acknowledgements (optional), a statement of competing interests (required) and a statement of the authors’ contributions. In \LaTeX, put an asterisk after the \texttt{section} command, as these sections should not be numbered. Again, during the peer review period, remember to omit any potentially identifying information (e.g., institution from which participants were recruited). 
-
-\section*{Data accessibility statement}
-
-Goes here.
-
-\section*{Ethics and consent}
-
-Go here.
-
-\section*{Acknowledgements}
-
-Go here.
-
-\section*{Competing interests}
-
-Go here.
-
-\section*{Authors' contributions}
-
-Go here.
-
-\printbibliography
-
-
-% CORRECTED APPENDIX SECTION
-
-\begin{appendices}
-
-\counterwithin{figure}{section}
-\counterwithin{table}{section}
-
-%%%%%%
-
-\section{Appendix title}
-
-This is the appendix section. The appendix should be referred to at least once in the text. Stimuli, experimental materials, and data analysis details, etc. should be uploaded to a data depository website such as OSF. Appendices count towards the word limit and any appendix longer than two pages should be provided as supplementary materials via a data depository website such as OSF.
-
-\begin{table}[H]
-\centering
-\caption{A table in the appendix. Precede table numbers with an “A” to distinguish the tables in the appendix from the ones in the text. The table caption goes above the table, as in the main text.}
-\label{tab:appA}
-\begin{tabular}{lcc}
-\toprule
-\textbf{Item} & \textbf{Value 1} & \textbf{Value 2} \\
-\midrule
-Row A & 10 & 20 \\
-Row B & 15 & 25 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\begin{figure}[H]
-\caption{A figure in the Appendix. Precede figure numbers with an “A” to distinguish the figures in the appendix from the ones in the text. The figure caption goes below the figure, as in the main text.}
-\includegraphics[scale=0.20]{my_curve.png}
+\includegraphics[width=0.5\textwidth]{Figure_2_Energy_vs_AI.png}
+\caption{Example figure demonstrating a second illustration within the layout.}
+\label{fig:example-two}
 \end{figure}
 
+\begin{table}[h]
+\centering
+\caption{Example table demonstrating the recommended table formatting.}
+\label{tab:example-table}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Category} & \textbf{Metric A} & \textbf{Metric B} \\
+\hline
+Group 1 & 0.85 & 12\% \\
+Group 2 & 0.78 & 10\% \\
+Group 3 & 0.65 & 8\% \\
+Group 4 & 0.50 & 5\% \\
+\hline
+\end{tabular}%
+}
+\end{table}
 
+\lipsum[8]
 
+\section{Conclusion and Future Work}
 
-\end{appendices}
+\textit{[Replace this section with your conclusions, summarizing the key findings and their implications, and outlining directions for future work.]}
+
+\lipsum[9]
+
+\section{Declaration}
+\fontsize{11}{13}\selectfont
+
+\textbf{Conflict of Interest: } [State any conflicts of interest, or declare that the authors have none.]
+
+\textbf{Author Contribution:}
+[Describe each author's contribution, e.g., using CRediT taxonomy roles such as conceptualization, methodology, data collection, analysis, writing, and supervision.]
+
+% Example for references section
+
+\printbibliography  % Use BibLaTeX for printing bibliography
 
 \end{document}
