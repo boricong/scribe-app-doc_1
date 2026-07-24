@@ -1,447 +1,231 @@
-\documentclass[a4paper,12pt]{report}
+\documentclass[
+    a4paper,
+    man,
+    floatsintext
+]{glossaPX2}
 
-%%%%%%%%%%%%
-% Packages %
-%%%%%%%%%%%%
+\usepackage[T1]{fontenc}
+\usepackage[american]{babel}
+\usepackage[style=apa,backend=biber,sorting=nyt]{biblatex}
+\NewBibliographyString{unpublished}
+\DefineBibliographyStrings{english}{
+  unpublished = {Unpublished},
+}
+\DefineBibliographyStrings{american}{
+  unpublished = {Unpublished},
+}
 
-\usepackage[english]{babel}
-\usepackage{packages/sleek}
-\usepackage{packages/sleek-title}
-\usepackage{packages/sleek-theorems}
-\usepackage{packages/sleek-listings}
+\usepackage[font={footnotesize,it}]{caption}
+\usepackage{csquotes}
+\usepackage{booktabs} 
+\usepackage{tabularx}
+\usepackage{linguex} 
+\usepackage{cgloss}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\graphicspath{ {./graphics/} }
+%\usepackage{times}
+\usepackage{ragged2e}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\newcommand{\quotes}[1]{``#1''}
+\usepackage[title]{appendix}
+\usepackage{booktabs}
 
-%%%%%%%%%%%%%%
-% Title-page %
-%%%%%%%%%%%%%%
+\providecommand{\firstrefdash}{} %removes dash in references to examples, i.e. (1a) instead of (1-a)
 
-\logo{./resources/pdf/logo.pdf}
-\institute{Random University}
-\faculty{Faculty of Whatever Sciences}
-%\department{Department of Anything but Psychology}
-\title{A sleek \LaTeX{} template}
-\subtitle{With a sleeker title-page}
-\author{\textit{Author}\\François \textsc{Rozet}}
-%\supervisor{Linus \textsc{Torvalds}}
-%\context{A long time ago in a galaxy far, far away...}
-\date{\today}
 
-%%%%%%%%%%%%%%%%
-% Bibliography %
-%%%%%%%%%%%%%%%%
 
-\addbibresource{./resources/bib/references.bib}
+\addbibresource{sample.bib}
 
-%%%%%%%%%%
-% Macros %
-%%%%%%%%%%
 
-\def\tbs{\textbackslash}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%
-% Document %
-%%%%%%%%%%%%
+\title[Sample article in Glossa Psycholinguistics]{Sample article in Glossa Psycholinguistics: Using the \LaTeX glossaPX2 class}
+\author[Author1, Author2] % LEAVE ANONYMOUS
+{\spauthor{Author\\
+  \institute{University of the North}\\
+  \small{email@example.edu, \\ORCID: 0000-0000-0000-0000}
+  }
+  \AND
+\spauthor{Author 2\\
+  \institute{University of the South}\\
+  \small{email@example.edu, \\ORCID: 0000-0000-0000-0000}
+  }
+}
 
 \begin{document}
-    \maketitle
+\maketitle
+$<<$\textit{This author section should be left as is during peer review to ensure anonymity.}\\
 
-    \clearpage
-    \pagenumbering{roman}
-    \tableofcontents
-    \clearpage
-    \pagenumbering{arabic}
+\textit{Once accepted, the information should be filled in. At that point, please make sure that it matches exactly with the information you entered on Janeway prior to submission (or updated as needed), including the name under which you publish and your official department and institution names (e.g., “Department of Linguistics”, not “Ling”). Affiliation details can be given in the language of the institution—i.e., they do not need to be translated to English.}$>>$
+\begin{abstract}
+The abstract text goes here.
+\end{abstract}
 
-    \chapter{Introduction}
+\begin{keywords}
+  keyword 1; keyword 2; keyword 3; keyword 4
+\end{keywords}
 
-    Sleek Template is a minimal collection of \LaTeX{} packages and settings that ease the writing of beautiful documents. While originally meant for theses, it is perfectly suitable for project reports, articles, syntheses, etc. -- with a few adjustments, like margins. As such the template is compatible with many document classes, such as \texttt{article}, \texttt{report} or \texttt{book}.
+$<<$\textit{Word count:\\ Enter your word count here, excluding references, but including appendices. Word count should not exceed 15,000 for regular submissions and 4,000 for brief submissions. (To be removed post-acceptance for typesetting)} $>>$
 
-    \begin{lstlisting}[style=ruled, language=latex, gobble=4]
-    \documentclass[a4paper,12pt,twoside,openany]{book}
-    \end{lstlisting}
+\section{Introduction}
+\label{intro}
+Begin the manuscript text here. This document uses the Glossa Psycholinguistics \LaTeX template. It is intended to show how to use the \texttt{glossaPX2} class file to format your documents to conform to the \textit{Glossa Psycholinguistics} stylesheet.\footnote{The footnote number should follow any punctuation. A footnote callout that appears with a dash should be inserted before the dash. A footnote inside parenthetical material is placed within the parentheses. There is no space before the number. For the footnote itself, indent the first line of each paragraph. A line should be placed above the footnote text to separate it from the regular text. A footnote that is referred to later in the text should be referred to by its footnote number (e.g., ``see Footnote 1'').} 
 
-    The template is composed of four separate packages which can be used individually: \texttt{sleek}, \texttt{sleek-title}, \texttt{sleek-theorems} and \texttt{sleek-listings}.
+The \textit{Glossa Psycholinguistics} style sheet was adapted from the \textit{Glossa} stylesheet by Alexandre Cremers. It was subsequently updated by Andrea Beltrama, Brian Dillon, and Jan Chrom\'{y}. 
 
-    \begin{lstlisting}[style=ruled, language=latex, caption={Example of Sleek Template packages usage.}, gobble=4]
-    \usepackage[english]{babel}
-    \usepackage{packages/sleek}
-    \usepackage{packages/sleek-title}
-    \end{lstlisting}
+\textit{Glossa Psycholinguistics} uses APA formatting of all references. In \LaTeX, use \texttt{parentcite} (or equivalent) for parenthetical citations as follows: Tanenhaus and Trueswell provide a thorough discussion of visual world eye-tracking methodology \parencite{tanenhaus2005}. Multiple articles in parenthetical citations should be ordered alphabetically by the last author's surname: \parencite{lago_spanish_2015,wagers_agreement_2009}. For in-text citation, please use \texttt{textcite} (or equivalent) as follows: \textcite{frazier1979} discussed syntactic processing strategies.\footnote{Note the slightly different citation styles for published and unpublished dissertations as per APA 7th edition, , illustrated for the same entry in bibliography as \textcite{frazier1979,frazier1979u}; the unpublished case should be treated as the exception, as dissertations count as published if available in a database, repository or archive. In \LaTeX, include 'howpublished = \{unpublished\}' in bibliography entry for unpublished ones.} For further examples of the APA format for in-text citations and entries in the list of references, see: \url{https://apastyle.apa.org/style-grammar-guidelines/references/examples}.
 
-    \blindfootnote{If you are a \LaTeX{} beginner, consider the excellent tutorial \citetitle{overleaf}, \textcite{overleaf}. Also, there are a lot of symbols available in \LaTeX{} and, therefore, in this template. I recommend the use of \citetitle{pakin2020comprehensive}, \textcite{pakin2020comprehensive} for searching symbols.}
+In \ref{ex1} you may see an example of an in-line text example:
 
-    \chapter{Features}
+\ex. This is an example sentence.\label{ex1}
 
-    \section{\texttt{sleek}}
+\subsection{Use of different typefaces in Glossa Psycholinguistics}
 
-    \texttt{sleek} is the main package. It imports the packages (see Table \ref{tab:sleek_relevant_packages}) and setups the settings that make Sleek Template easy to use. The package provides two options:
+For the first mention of a technical term and for object-language forms (letters, words, phrases, sentences) cited within the text, please use italics. The exception is when they are phonetic transcriptions or phonological representations in IPA. For example, Latin \textit{habere} is not cognate with Old English \textit{hafian}.
 
-    \begin{enumerate}[noitemsep]
-        \item \texttt{header} adds a header with the current chapter to pages;
-        \item \texttt{french} makes the French setup consistent with other languages.
-    \end{enumerate}
+Italics should also be used for emphasis of a particular word that is not a technical term, for emphasis within a quotation, with the indication [emphasis mine/ours] at the end of the quotation, and for the name of the language in examples.
 
-    However, nothing prevents you from tweaking the settings to your liking in the source code. For example, you can change the font of the document from \enquote{Linux Libertine} to \enquote{Latin Modern Roman}, by replacing
+\textbf{Boldface} can be used to draw the reader's attention to particular aspects of a linguistic example, whether within the text or as numbered examples. Full caps and underlining are not normally used for highlighting.
 
-    \begin{lstlisting}[style=ruled, language=latex, gobble=4]
-    % Font
-    \RequirePackage{libertine}
-    \RequirePackage{libertinust1math}
-    \RequirePackage[T1]{fontenc}
-    \end{lstlisting}
+\subsection{More details on styling}
 
-    with
+For in-text parentheticals, please use an \textit{n}-dash with spaces on each side. Here is an example: Syntactic processing difficulty is indexed in ERP measures -- for example, the P600 effect has been associated with the recognition of a syntactic error.
 
-    \begin{lstlisting}[style=ruled, language=latex, gobble=4]
-    % Font
-    \RequirePackage{lmodern}
-    \RequirePackage[T1]{fontenc}
-    \end{lstlisting}
+The hyphen is used to indicate that two words or morphemes are conventionally presented as a single unit, as in the case of certain compounds or common adverb-particle forms: ``well-informed,'' ``old-fashioned,'' ``bottom-up,'' etc.
 
-    in the \texttt{sleek.sty} file.
+Please use double quotation marks when a passage from another work is cited in the text,  and when a technical term or other expression is mentioned that the author does not want to adopt. For example: Author X writes that ``LaTeX is a useful tool for typesetting.''
 
-    \subsection{Mathematics}
+Single quotation marks are used exclusively for linguistic meanings: Latin \textit{habere} `have' is not cognate with Old English \textit{hafian} `have.'
 
-    This template uses \texttt{amsmath} and \texttt{amssymb}, which are the de-facto standard for typesetting mathematics. Additionally, \texttt{esint} provides alternative integral symbols (see Table 78 in \cite{pakin2020comprehensive}) and \texttt{bm} is used for bold math symbols like vectors (see \eqref{eq:gauss_law}).
+\section{Current study}
+\label{current}
 
-    A few custom macros have also been added such as \texttt{\tbs{}rbk}, \texttt{\tbs{}sbk} and \texttt{\tbs{}cbk} for respectively round, square and curly brackets or \texttt{\tbs{}abs} for absolute value. Here follows some examples showcasing what is possible with the default packages of \texttt{sleek}.
+This is a new section.
 
-    \[
-        \rbk*{\pi}, \quad \sbk*{\frac{\pi}{2}}, \quad \cbk*{\pi=3 + \frac{1}{7 + \frac{1}{15 + \frac{1}{1 + \dots}}}}, \quad \abs{2 \pi}, \quad \norm{\frac{\pi}{4}}, \quad \ceil[\big]{\frac{22}{7}}, \quad \floor[\Big]{\frac{\pi^2}{6}}
-    \]
+\section{Our experiment}
 
-    \begin{equation}\label{eq:gauss_law}
-        \oiint_S \bm{E} \cdot \d{\bm{s}} = \iiint_V \frac{\rho}{\varepsilon_0} \d{V}
-    \end{equation}
+Here we describe our experiment.
 
-    \begin{equation*}
-        e = \sum_{n=0}^\infty \frac{1}{\fact{n}}
-    \end{equation*}
+\subsection{Participants}
 
-    \begin{subequations}
-        \begin{align}
-            \frac{\d{x}}{\d{t}} & = \alpha x - \beta xy \\
-            \frac{\d{y}}{\d{t}} & = \delta xy - \gamma y
-        \end{align}
-    \end{subequations}
+Here is information about our participants. During the peer review period, remember to omit any potentially identifying information (e.g., institution from which participants were recruited).
 
-    \begin{align*}
-        \ln \abs{x} + C & = \int \frac{1}{x} \d{x} \\
-        \exp(x) & = \lim_{n \to \infty} \rbk*{1 + \frac{x}{n}}^n
-    \end{align*}
+\subsection{Materials}
 
-    \begin{equation}
-        \left\{
-        \begin{aligned}
-            x & = r \sin \theta \cos \phi \\
-            y & = r \sin \theta \sin \phi \\
-            z & = r \cos \theta
-        \end{aligned}
-        \right.
-    \end{equation}
-
-    \begin{alignat*}{2}
-                              & & P(A, B)  & = P(A \mid B) P(B)                        \\
-        \Leftrightarrow \quad & & P(A \mid B) & = \frac{P(A, B)}{P(B)}                 \\
-                              & &          & = P(B \mid A) \frac{P(A)}{P(B)}
-    \end{alignat*}
-
-    \subsection{Units}
-
-    The \texttt{siunitx} package \cite{wright2022siunitx} provides three commands to typeset numbers, units and quantities: \texttt{\tbs{}num}, \texttt{\tbs{}unit} and \texttt{\tbs{}qty}.
-
-    It is possible to write, both in text or math modes, numbers without units (\eg{} \num{1}, \num{1.0}, \num{-1}, \num{3.14159}, \num{e100}, $N_A = \num{6.022e23}$), units without quantity (\eg{} $\unit{\joule} = \unit{\newton\meter} = \unit{\kilogram\meter\squared\per\second\squared}$) and, finally, quantities with their units (\eg{} \qty{9.81}{\meter\per\second\squared}, $c = \qty{299.6e6}{\meter\per\second}$).
+Here is information about our experimental stimuli.
 
-    \subsection{Lists}
-
-    Sleek Template uses \texttt{enumitem} to enhance the listing capabilities of \LaTeX{}. There are several lists environments:
-    \begin{itemize}[noitemsep]
-        \item \texttt{itemize} for unordered lists;
-        \item \texttt{enumerate} for ordered lists;
-        \item \texttt{description} for descriptive lists.
-    \end{itemize}
-
-    In a list, each element is preceded by the command \texttt{\tbs{}item}. It is possible to modify the labels
-    \begin{enumerate*}
-        \item individually with \texttt{\tbs{}item[newLabel]} or
-        \item for the whole environment with the \texttt{label=newLabel} option.
-    \end{enumerate*}
-
-    In the case of \texttt{enumerate}, \texttt{newLabel} can contain special expressions (see Table \ref{tab:enumerate_special_expressions}) that will adapt to the item number. For example, \texttt{label=(\tbs{}alph*)} defines the label sequence \enquote{(a), (b), (c), ...}. Still in the case of \texttt{enumerate}, the  \texttt{\tbs{}setcounter} and \texttt{\tbs{}addtocounter} commands allow to modify the current item number.
-
-    One could want to reduce the space between items with the \texttt{noitemsep} option or to delete the left margin with the \texttt{leftmargin=*} option.
-
-    It is also possible to write nested lists. Here follows a very condensed example.
-
-    \begin{itemize}[leftmargin=*]
-        \item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
-        Arcu ac tortor dignissim convallis aenean et tortor. In eu mi bibendum neque egestas congue quisque.
-
-        \item[$+$] Semper quis lectus nulla at volutpat diam ut. Felis eget velit aliquet sagittis id. Blandit aliquam etiam erat velit scelerisque in dictum non consectetur.
-        \begin{equation}
-            a^2 + b^2 = c^2
-        \end{equation}
-
-        \item Nibh sed pulvinar proin gravida hendrerit lectus. Pretium aenean pharetra magna ac placerat vestibulum lectus mauris. Non consectetur a erat nam at lectus urna duis.
-        \begin{enumerate}[noitemsep, label=\roman*.]
-            \item Nibh tortor id aliquet lectus. Sit amet justo donec enim diam vulputate ut pharetra sit.
-            \setcounter{enumi}{3}
-            \item Condimentum id venenatis a condimentum vitae. Quis eleifend quam adipiscing vitae proin sagittis nisl.
-            \addtocounter{enumi}{15}
-            \item Proin sagittis nisl rhoncus mattis rhoncus urna neque viverra.
-        \end{enumerate}
-
-        \item Elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus.
-            \begin{description}
-                \item[Ridiculus] mus mauris vitae ultricies leo. Mollis aliquam ut porttitor leo a diam. Velit egestas dui id ornare arcu odio ut sem nulla.
-                \item[Nullam vehicula] ipsum a arcu. Nibh sit amet commodo nulla facilisi nullam. At erat pellentesque adipiscing commodo elit. Libero volutpat sed cras ornare arcu dui.
-            \end{description}
-    \end{itemize}
-
-    \subsection{Figures}
-
-    Thanks to the \texttt{graphicx} package, it is possible to include external graphic documents (images, plots, etc.) in your document with the \texttt{\tbs{}includegraphics} command. Most image type format (\texttt{jpg}, \texttt{png}, \texttt{bmp}, etc.) are supported by this command. However, it should be noted that it is highly preferable to use vectorial types, such as \texttt{pdf} or \texttt{eps}.
-
-    \begin{figure}[h]
-        \centering
-        \includegraphics[width=0.5\textwidth]{resources/pdf/logo.pdf}
-        \caption{Random University logo.}
-        \label{fig:random_university_logo}
-    \end{figure}
-
-    \subsection{Tables}
-
-    The \texttt{multirow} package comes handy for complex table formatting such as multi-column or multi-row cells.
-
-    \begin{table}[H]
-        \centering
-        \begin{tabular}{|r|r|c|l|}
-            \hline
-            \multicolumn{3}{|l|}{a} & qrs  \\ \hline
-             b &  ef &     jkl      & tuvx \\ \hline
-            cd & ghi &     mnop     & wyz  \\ \hline
-        \end{tabular}
-        \caption{Example of multi-column cells.}
-        \label{tab:multicol_example}
-    \end{table}
-
-    \begin{table}[H]
-        \centering
-        \begin{tabular}{|l|c|r|}
-            \hline
-            \multirow{3}{2cm}{a} &   b   &    c \\ \cline{2-3}
-                                 &  de   &   fg \\ \cline{2-3}
-                                 &  hij  &  klm \\ \hline
-            nopq                 & rstuv & wxyz \\ \hline
-        \end{tabular}
-        \caption{Example of multi-row cells.}
-        \label{tab:multirow_example}
-    \end{table}
-
-    The \texttt{booktabs} package also provides tools to build publication-ready tables. The tables in Appendix \ref{chap:Tables} are good examples.
-
-    \clearpage
-    \section{\texttt{sleek-title}}
-
-    Sleek Template offers a custom title-page with the package \texttt{sleek-title}. The formatting of the title-page is automatically inferred from the fields that the user has provided.
-
-    The fields are \texttt{\tbs{}logo}, \texttt{\tbs{}institute}, \texttt{\tbs{}faculty}, \texttt{\tbs{}department}, \texttt{\tbs{}title}, \texttt{\tbs{}subtitle}, \texttt{\tbs{}author}, \texttt{\tbs{}supervisor}, \texttt{\tbs{}context} and \texttt{\tbs{}date}.
-
-    Among these, only \texttt{\tbs{}title}, \texttt{\tbs{}author} and \texttt{\tbs{}date} have to be provided. However, none of the fields should stay empty. Prefer deleting or commenting the line if so.
-
-    \begin{lstlisting}[style=ruled, language=latex, caption={Example of \texttt{sleek-title} title-page definition.}, gobble=4]
-    \logo{./resources/pdf/logo.pdf}
-    \institute{Random University}
-    \faculty{Faculty of Whatever Sciences}
-    %\department{Department of Anything but Psychology}
-    \title{A sleek \LaTeX{} template}
-    \subtitle{With a sleeker title-page}
-    \author{\textit{Author}\\Francois \textsc{Rozet}}
-    %\supervisor{Linus \textsc{Torvalds}}
-    %\context{A long time ago in a galaxy far, far away...}
-    \date{\today}
-    \end{lstlisting}
-
-    It is also possible to use Sleek Template without \texttt{sleek-title}, in which case the default \LaTeX{} title-page will be used.
-
-    \clearpage
-    \section{\texttt{sleek-theorems}}
-
-    \texttt{sleek-theorems} is based on the \texttt{amsthm} and \texttt{thmtools} packages. It provides a handful of theorem-like environments, each of which have different style and purpose: \texttt{theorem}, \texttt{lemma}, \texttt{proposition}, \texttt{proof}, \texttt{definition}, \texttt{hypothesis}, \texttt{method}, \texttt{question}, \texttt{answer}, \texttt{example}, \texttt{remark}, \texttt{note} and \texttt{tip}.
-
-    \begin{note}
-        The \texttt{french} and \texttt{german} options translate the names of the provided environments. It is also possible, and easy, to add your own language as an option in the source code.
-    \end{note}
-
-    \begin{theorem}[Triangle inequality]
-        Let be a triangle in Euclidean space. Then the sum of the lengths of two of its sides always surpass or equals the length of the third.
-    \end{theorem}
-
-    \begin{proof}
-        Let $a$, $b$ and $c$ be the lengths of the sides of a triangle in Euclidean space and $\alpha$, $\beta$, $\gamma$ their respective opposite angle. By the generalized Pythagoras' theorem, we have
-        \begin{alignat*}{2}
-                                  &  & c^2 & = a^2 + b^2 - 2ab \cos\gamma \\
-                                  &  &     & \leq a^2 + b^2 + 2ab         \\
-                                  &  &     & \leq (a + b)^2               \\
-            \Leftrightarrow \quad &  & c   & \leq a + b
-        \end{alignat*}
-        Therefore in any triangle, the sum of the lengths of two sides always surpass or equals the length of the third. \qed
-    \end{proof}
-
-    In addition, these environments also have framed versions -- \texttt{fmd-theorem}, \texttt{fmd-lemma}, etc. -- for better encapsulation.
-
-    \begin{fmd-theorem}[Triangle inequality]\label{thm:Triangle inequality}
-        Let be a triangle in Euclidean space. Then the sum of the lengths of two of its sides always surpass or equals the length of the third.
-    \end{fmd-theorem}
-
-    \begin{fmd-proof}
-        Let $a$, $b$ and $c$ be the lengths of the sides of a triangle in Euclidean space and $\alpha$, $\beta$, $\gamma$ their respective opposite angle. By the generalized Pythagoras' theorem, we have
-        \begin{alignat*}{2}
-                                  &  & c^2 & = a^2 + b^2 - 2ab \cos\gamma \\
-                                  &  &     & \leq a^2 + b^2 + 2ab         \\
-                                  &  &     & \leq (a + b)^2               \\
-            \Leftrightarrow \quad &  & c   & \leq a + b
-        \end{alignat*}
-        Therefore in any triangle, the sum of the lengths of two sides always surpass or equals the length of the third. \qed
-    \end{fmd-proof}
-
-    \begin{fmd-question*}
-        Based on the theorem \ref{thm:Triangle inequality}, what is the shortest path from a point $A$ to a point $B$ in Euclidean geometry ?
-    \end{fmd-question*}
-
-    \clearpage
-    \section{\texttt{sleek-listings}}
-
-    The \texttt{sleek-listings} package is a small collection of styles and languages for the \texttt{listings} package, which is useful to showcase nicely samples of code. The package provides the styles \texttt{default}, \texttt{numbered}, \texttt{framed}, \texttt{ruled}, \texttt{framednumbered} and \texttt{rulednumbered} and the languages \texttt{latex}, \texttt{c*}, \texttt{cpp*}, \texttt{matlab*}, \texttt{python*}, \texttt{java*} and \texttt{scheme}, with a simple color scheme for keywords and comments.
-
-    For instance, if you want to showcase Python code within a ruled code block (top and bottom rule) with line numbers, you can either import a \texttt{.py} file with
-
-    \begin{lstlisting}[style=ruled, language=latex, gobble=4]
-    \lstinputlisting[style=rulednumbered, language=python*]{filename.py}
-    \end{lstlisting}
-
-    or paste the code within the \LaTeX{} document as
-
-    \begin{lstlisting}[style=rulednumbered, language=python*, gobble=4]
-    import numpy as np # Unnecessary import
-
-    a, b = 69., .420
-
-    def f(a: float, b: float) -> float:
-        r"""Sum two numbers
-
-        Parameters
-        ----------
-        a: first number
-        b: second number
-
-        Returns
-        -------
-        the sum of 'a' and 'b'
-        """
-
-        return a + b
-
-    c = f(a, b)
-
-    print('{:f} + {:f} equals {:f}'.format(a, b, c))
-    \end{lstlisting}
-
-    \printbibliography
-
-    \appendix
-
-    \chapter{Tables} \label{chap:Tables}
-
-    \begin{table}[h]
-        \centering
-        \begin{tabular}{ll}
-            \toprule
-            \textbf{Package} & \textbf{Purpose} \\
-            \midrule
-            \texttt{amsmath} & Mathematical typesetting \\
-            \texttt{amsthm} & Mathematical environments for theorems, proofs, etc. \\
-            \texttt{booktabs} & Weighted rules for tables \\
-            \texttt{biblatex} & Bibliography \\
-            \texttt{csquotes} & Inline and display quotations \\
-            \texttt{enumitem} & Lists and enumerations \\
-            \texttt{float} & Floating objects such as figures and tables \\
-            \texttt{graphicx} & Graphics \\
-            \texttt{hyperref} & Hyperlinks and bookmarks \\
-            \texttt{listings} & Code listings \\
-            \texttt{multirow} & Table cells that span multiple columns or rows \\
-            \texttt{siunitx} & Typesetting of units  \\
-            \texttt{subcaption} & Sub-figures and sub-captions \\
-            \bottomrule
-        \end{tabular}
-        \caption{List of the most relevant packages imported by Sleek Template.}
-        \label{tab:sleek_relevant_packages}
-    \end{table}
-
-    \begin{table}[h]
-        \centering
-        \begin{tabular}{>{\ttfamily}ll}
-            \toprule
-            \{\tbs{}rmfamily abcABC123\}        & {\rmfamily abcABC123}        \\
-            \{\tbs{}sffamily abcABC123\}        & {\sffamily abcABC123}        \\
-            \{\tbs{}ttfamily abcABC123\}        & {\ttfamily abcABC123}        \\
-            \{\tbs{}mdseries abcABC123\}        & {\mdseries abcABC123}        \\
-            \{\tbs{}bfseries abcABC123\}        & {\bfseries abcABC123}        \\
-            \{\tbs{}itshape abcABC123\}         & {\itshape abcABC123}         \\
-            \{\tbs{}scshape abcABC123\}         & {\scshape abcABC123}         \\
-            \{\tbs{}slshape abcABC123\}         & {\slshape abcABC123}         \\
-            \{\tbs{}upshape abcABC123\}         & {\upshape abcABC123}         \\
-            \midrule
-            \tbs{}emph\{abcABC123\}            & \emph{abcABC123}            \\
-            \tbs{}lowercase\{abcABC123\}       & \lowercase{abcABC123}       \\
-            \tbs{}normalfont\{abcABC123\}      & \normalfont{abcABC123}      \\
-            \tbs{}textrm\{abcABC123\}          & \textrm{abcABC123}          \\
-            \tbs{}textbf\{abcABC123\}          & \textbf{abcABC123}          \\
-            \tbs{}textit\{abcABC123\}          & \textit{abcABC123}          \\
-            \tbs{}textsc\{abcABC123\}          & \textsc{abcABC123}          \\
-            \tbs{}textsf\{abcABC123\}          & \textsf{abcABC123}          \\
-            \tbs{}textsl\{abcABC123\}          & \textsl{abcABC123}          \\
-            \tbs{}textsubscript\{abcABC123\}   & \textsubscript{abcABC123}   \\
-            \tbs{}textsuperscript\{abcABC123\} & \textsuperscript{abcABC123} \\
-            \tbs{}texttt\{abcABC123\}          & \texttt{abcABC123}          \\
-            \tbs{}underline\{abcABC123\}       & \underline{abcABC123}       \\
-            \tbs{}uppercase\{abcABC123\}       & \uppercase{abcABC123}       \\
-            \bottomrule
-        \end{tabular}
-        \caption{Available text fonts in \LaTeX{}.}
-        \label{tab:text_fonts}
-    \end{table}
-
-    \begin{table}[h]
-        \centering
-        \begin{tabular}{>{\ttfamily\$}l<{\$}l}
-            \toprule
-            \tbs{}mathcal\{abcABC123\}    & $\mathcal{abcABC123}$ \\
-            \tbs{}mathit\{abcABC123\}     & $\mathit{abcABC123}$ \\
-            \tbs{}mathnormal\{abcABC123\} & $\mathnormal{abcABC123}$ \\
-            \tbs{}mathrm\{abcABC123\}     & $\mathrm{abcABC123}$ \\
-            \tbs{}mathbb\{abcABC123\}     & $\mathbb{abcABC123}$ \\
-            \tbs{}mathfrak\{abcABC123\}   & $\mathfrak{abcABC123}$ \\
-            \bottomrule
-        \end{tabular}
-        \caption{Available math fonts in \LaTeX{} and AMS.}
-        \label{tab:math_fonts}
-    \end{table}
-
-    \begin{table}[h]
-        \centering
-        \begin{tabular}{ll}
-            \toprule
-            \textbf{Expression} & \textbf{Description} \\
-            \midrule
-            \texttt{\tbs{}arabic*} & Arabic numbers (1, 2, 3, ...) \\
-            \texttt{\tbs{}alph*}   & Lowercase letters (a, b, c, ...) \\
-            \texttt{\tbs{}Alph*}   & Uppercase letters (A, B, C, ...) \\
-            \texttt{\tbs{}roman*}  & Lowercase Roman numerals (i, ii, iii, ...) \\
-            \texttt{\tbs{}Roman*}  & Uppercase Roman numerals (I, II, III, ...) \\
-            \bottomrule
-        \end{tabular}
-        \caption{Special expressions for the label of \texttt{enumerate} environments.}
-        \label{tab:enumerate_special_expressions}
-    \end{table}
+\subsection{Method}
+
+Here is information about our experimental method.
+
+\subsection{Data analysis}
+
+Here we describe our data analysis. 
+
+\subsection{Results}
+
+Here are our results. When reporting numerical values, please use the \textit{n}-dash for the negative sign and to indicate a numerical range. Here is an example of a range and a negative number: Across experiments, the simple effect size ranged between 32 -- 56 ms. The average difference between conditions was --15 ms.
+
+Here is an example of a figure:
+
+\begin{figure}[ht]
+\caption{A sample figure caption. Figure captions appear below figures.}
+\includegraphics[scale=0.20]{my_curve.png}
+\end{figure}
+
+
+\begin{table}[ht]
+
+\centering
+
+\caption{A sample table caption. Table captions appear above tables.}
+
+\label{tab:sample}
+
+\begin{tabular}{lcc}
+
+\toprule
+
+\textbf{Condition} & \textbf{Mean} & \textbf{SD} \\
+
+\midrule
+
+Condition A & 123 & 45 \\
+
+Condition B & 135 & 39 \\
+
+Condition C & 128 & 42 \\
+
+\bottomrule
+
+\end{tabular}
+
+\end{table}
+
+\section{Conclusion}
+
+Here is a conclusion. The conclusion must be followed by the following unnumbered sections: a data accessibility statement (required), an ethics and consent statement (required if applicable), acknowledgements (optional), a statement of competing interests (required) and a statement of the authors’ contributions. In \LaTeX, put an asterisk after the \texttt{section} command, as these sections should not be numbered. Again, during the peer review period, remember to omit any potentially identifying information (e.g., institution from which participants were recruited). 
+
+\section*{Data accessibility statement}
+
+Goes here.
+
+\section*{Ethics and consent}
+
+Go here.
+
+\section*{Acknowledgements}
+
+Go here.
+
+\section*{Competing interests}
+
+Go here.
+
+\section*{Authors' contributions}
+
+Go here.
+
+\printbibliography
+
+
+% CORRECTED APPENDIX SECTION
+
+\begin{appendices}
+
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
+
+%%%%%%
+
+\section{Appendix title}
+
+This is the appendix section. The appendix should be referred to at least once in the text. Stimuli, experimental materials, and data analysis details, etc. should be uploaded to a data depository website such as OSF. Appendices count towards the word limit and any appendix longer than two pages should be provided as supplementary materials via a data depository website such as OSF.
+
+\begin{table}[H]
+\centering
+\caption{A table in the appendix. Precede table numbers with an “A” to distinguish the tables in the appendix from the ones in the text. The table caption goes above the table, as in the main text.}
+\label{tab:appA}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Item} & \textbf{Value 1} & \textbf{Value 2} \\
+\midrule
+Row A & 10 & 20 \\
+Row B & 15 & 25 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\caption{A figure in the Appendix. Precede figure numbers with an “A” to distinguish the figures in the appendix from the ones in the text. The figure caption goes below the figure, as in the main text.}
+\includegraphics[scale=0.20]{my_curve.png}
+\end{figure}
+
+
+
+
+\end{appendices}
 
 \end{document}
