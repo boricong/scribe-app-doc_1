@@ -1,12 +1,14 @@
 \documentclass[10pt,a4paper,twocolumn]{article}
 
 % ============================================================
-% LaTeX Editor Feature Test
-% Compile with: pdfLaTeX
-% No external images, fonts, bibliography files, or data files.
+% Single-File LaTeX Editor Test
+% Compile with pdfLaTeX.
+%
+% No external images, fonts, bibliography databases, or data files.
+% No labels, cross-references, citations, or hyperlinks.
 % ============================================================
 
-% ---------- Page and typography ----------
+% ---------- Page layout ----------
 \usepackage[
   a4paper,
   top=18mm,
@@ -16,6 +18,7 @@
   columnsep=7mm
 ]{geometry}
 
+% ---------- Basic typography ----------
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
@@ -28,45 +31,36 @@
 \usepackage{mathtools}
 \usepackage{bm}
 
-% ---------- Tables, graphics, and lists ----------
+% ---------- Tables, colors, and lists ----------
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{multirow}
-\usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage{enumitem}
 
-% ---------- Captions and links ----------
+% ---------- Captions and source code ----------
 \usepackage[
   font=small,
   labelfont=bf
 ]{caption}
-
-\usepackage[
-  colorlinks=true,
-  linkcolor=blue,
-  citecolor=teal,
-  urlcolor=violet,
-  pdfauthor={LaTeX Editor Test},
-  pdftitle={A Self-Contained Three-Page LaTeX Test Document}
-]{hyperref}
-
-% ---------- Code-like text ----------
 \usepackage{listings}
 
 % ---------- Header and footer ----------
 \usepackage{fancyhdr}
 
-% ---------- General settings ----------
+% ---------- Document settings ----------
 \setlength{\parindent}{1em}
 \setlength{\parskip}{0pt}
 \setlength{\columnsep}{7mm}
 \setlist{nosep}
 
+% ---------- Colors ----------
 \definecolor{codegray}{gray}{0.96}
-\definecolor{darkgreen}{rgb}{0.0,0.45,0.15}
+\definecolor{darkgreen}{rgb}{0.0,0.42,0.12}
 \definecolor{darkred}{rgb}{0.55,0.0,0.0}
+\definecolor{darkblue}{rgb}{0.0,0.15,0.55}
 
+% ---------- Source-code style ----------
 \lstset{
   basicstyle=\ttfamily\scriptsize,
   backgroundcolor=\color{codegray},
@@ -74,7 +68,7 @@
   rulecolor=\color{black!35},
   numbers=left,
   numberstyle=\tiny\color{black!55},
-  keywordstyle=\bfseries\color{blue},
+  keywordstyle=\bfseries\color{darkblue},
   commentstyle=\itshape\color{darkgreen},
   stringstyle=\color{darkred},
   breaklines=true,
@@ -86,40 +80,45 @@
 % ---------- Theorem environments ----------
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
+
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}
 
-% ---------- Custom commands ----------
+% ---------- Custom mathematical commands ----------
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
 \newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
 \newcommand{\vect}[1]{\bm{#1}}
+
 \DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\rank}{rank}
 \DeclareMathOperator*{\argmin}{arg\,min}
 
 % ---------- Running header ----------
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{LaTeX Editor Feature Test}
-\fancyhead[R]{Self-Contained Paper}
+\fancyhead[R]{Single-File Paper}
 \fancyfoot[C]{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 
-% ---------- Title information ----------
+% ---------- Title ----------
 \title{
-  \textbf{A Self-Contained Three-Page Test Document}\\
-  \large Demonstrating Common \LaTeX{} Syntax in a Paper-Style Layout
+  \textbf{A Single-File Test Document for a \LaTeX{} Editor}\\
+  \large Demonstration of Common Paper-Style Typesetting Features
 }
 
 \author{
   Example Author\thanks{
-    This footnote tests author notes and special symbols:
+    This author note tests footnotes and escaped symbols:
     \%, \$, \&, \#, \_, \{, and \}.
   }\\
-  Department of Reproducible Documents\\
+  Department of Document Engineering\\
   \texttt{author@example.com}
 }
 
@@ -134,75 +133,97 @@
 \maketitle
 
 \begin{abstract}
-This document is a compact test suite for a \LaTeX{} editor.
-It contains sectioning commands, mathematical notation, theorem
-environments, cross-references, lists, tables, internally generated
-graphics, source-code listings, hyperlinks, citations, footnotes,
-and a bibliography. No external image, font, bibliography, or data
-file is required. Explicit page breaks are used so that the document
-has a predictable three-page structure.
+This self-contained document is intended for testing a \LaTeX{}
+editor and PDF preview system. It demonstrates text formatting,
+sectioning, mathematical notation, theorem environments, lists,
+tables, internally generated graphics, source-code listings,
+footnotes, colors, headers, footers, and captions. It does not
+require external images, external fonts, bibliography databases,
+data files, labels, citations, hyperlinks, or cross-references.
+Explicit page breaks divide the document into three pages.
 \end{abstract}
 
 \noindent
 \textbf{Keywords:}
-\LaTeX, editor testing, mathematical typesetting, cross-reference,
-table, bibliography
+\LaTeX, editor testing, mathematical typesetting, paper layout,
+single-file document
 
 \section{Introduction}
-\label{sec:introduction}
 
-Scientific documents usually combine prose, notation, structured
-arguments, tables, and figures. A useful editor test should therefore
-exercise more than plain text. This file is designed to compile as a
-single, self-contained source document.
+Scientific papers commonly combine structured prose, equations,
+formal statements, tables, figures, and code fragments. A useful
+editor test should therefore exercise more than plain paragraph
+rendering.
 
-Text formatting can be tested with
+This paragraph demonstrates several font styles:
 \textbf{bold text},
 \textit{italic text},
 \emph{emphasized text},
 \texttt{monospaced text},
-and \textsc{small capitals}.
+\textsc{small capitals},
+and {\large larger text}.
+Normal text resumes after each local formatting command.
+
 Quotation marks should appear correctly as
 ``double quotation marks'' and `single quotation marks'.
+Dashes can be compared as a hyphen (-), an en dash (--), and an
+em dash (---). An ellipsis may be written as \ldots
 
-Common symbols include
+Common built-in symbols include
 \LaTeX{},
 \TeX{},
-\S~1,
+\S,
 \copyright,
 \pounds,
-and the escaped characters
-\# \$ \% \& \_ \{ \}.
-A nonbreaking space can be tested in expressions such as
-Figure~\ref{fig:internal-figure} and Table~\ref{tab:results}.
+\dag,
+and
+\ddag.
+Reserved characters are printed by escaping them:
+$begin:math:display$
+  \\\# \\qquad
+  \\\$ \\qquad
+  \\\% \\qquad
+  \\\& \\qquad
+  \\\_ \\qquad
+  \\\{ \\qquad
+  \\\}\.
+$end:math:display$
 
 This sentence contains a footnote.\footnote{
-Footnotes may contain formatted text such as
-\textit{italics}, mathematics such as $begin:math:text$x\^2\+y\^2$end:math:text$, and references
-such as Section~\ref{sec:methods}.
+The footnote contains \textit{formatted text}, mathematical notation
+such as $begin:math:text$x\^2\+y\^2\=z\^2$end:math:text$, and special characters such as \% and \&.
 }
-The document also includes an external hyperlink to the
-\href{https://www.latex-project.org/}{\LaTeX{} Project website},
-although opening the link is not required for compilation.
 
 \subsection{Inline Mathematics}
 
-Inline mathematics may contain Greek letters and operators:
-$begin:math:display$
-  \\alpha\,\\ \\beta\,\\ \\Gamma\,\\ \\Delta\,\\ \\theta\,\\ \\lambda\,\\ \\mu\,\\ \\sigma\,
-  \\qquad
-  \\sum\,\\ \\prod\,\\ \\int\,\\ \\lim\,\\ \\nabla\.
-$end:math:display$
-In running text, one may write
-$begin:math:text$f\(x\)\=x\^2$end:math:text$,
+Inline mathematics can be placed inside prose. For example,
+$begin:math:text$f\(x\)\=x\^2\+2x\+1$end:math:text$,
 $begin:math:text$\\E\[X\]\=\\mu$end:math:text$,
-or
-$begin:math:text$\\norm\{\\vect\{x\}\}\_2 \= \\sqrt\{\\sum\_i x\_i\^2\}$end:math:text$.
+and
+$begin:math:text$\\norm\{\\vect\{x\}\}\_2\=\\sqrt\{x\_1\^2\+\\cdots\+x\_n\^2\}$end:math:text$.
 
-The following numbered equation demonstrates fractions, subscripts,
-superscripts, and automatic delimiter sizing:
+Greek letters and common mathematical symbols include
+$begin:math:display$
+  \\alpha\,\\ \\beta\,\\ \\gamma\,\\ \\Gamma\,\\ \\Delta\,\\ \\theta\,\\ \\lambda\,
+  \\mu\,\\ \\pi\,\\ \\rho\,\\ \\sigma\,\\ \\phi\,\\ \\omega\,\\ \\Omega\.
+$end:math:display$
+
+Relations and logical symbols include
+$begin:math:display$
+  a\\leq b\,\\qquad
+  b\\geq a\,\\qquad
+  x\\neq y\,\\qquad
+  p\\approx q\,\\qquad
+  A\\subseteq B\,\\qquad
+  x\\in\\R\.
+$end:math:display$
+
+\subsection{Displayed Equations}
+
+A numbered equation tests fractions, summations, vectors, subscripts,
+superscripts, and automatically sized delimiters:
+
 \begin{equation}
-\label{eq:objective}
   \widehat{\vect{\theta}}
   =
   \argmin_{\vect{\theta}\in\R^d}
@@ -212,42 +233,66 @@ superscripts, and automatic delimiter sizing:
     \left(
       y_i-\vect{x}_i^{\mathsf T}\vect{\theta}
     \right)^2
-    +\lambda\norm{\vect{\theta}}_2^2
+    +
+    \lambda\norm{\vect{\theta}}_2^2
   \right\}.
 \end{equation}
 
-Equation~\eqref{eq:objective} is a regularized least-squares objective.
-References should update automatically after sufficient compilation
-passes.
+An unnumbered equation can be produced with square brackets:
 
-\subsection{Lists and Descriptions}
+$begin:math:display$
+  e\^\{i\\pi\}\+1\=0\.
+$end:math:display$
 
-A compact itemized list tests bullet indentation:
+The following expression demonstrates roots, absolute values,
+overlines, hats, and accents:
+
+$begin:math:display$
+  \\sqrt\[n\]\{x\}\,
+  \\qquad
+  \\abs\{x\-y\}\,
+  \\qquad
+  \\overline\{z\}\,
+  \\qquad
+  \\widehat\{\\theta\}\,
+  \\qquad
+  \\widetilde\{f\}\,
+  \\qquad
+  \\dot\{x\}\,
+  \\qquad
+  \\ddot\{x\}\.
+$end:math:display$
+
+\subsection{Lists}
+
+An itemized list tests bullet rendering and indentation:
 
 \begin{itemize}
   \item plain text and punctuation;
   \item inline mathematics, $begin:math:text$a\^2\+b\^2\=c\^2$end:math:text$;
-  \item nested content:
+  \item formatted text such as \textbf{bold} and \textit{italic};
+  \item a nested list:
     \begin{itemize}
       \item first nested item;
       \item second nested item.
     \end{itemize}
 \end{itemize}
 
-An enumerated list tests counters:
+An enumerated list tests custom counters:
 
 \begin{enumerate}[label=(\roman*)]
-  \item define the model;
-  \item estimate its parameters;
-  \item evaluate the result.
+  \item define the problem;
+  \item construct a mathematical model;
+  \item calculate the result;
+  \item interpret the output.
 \end{enumerate}
 
 A description list tests aligned labels:
 
 \begin{description}[style=nextline]
-  \item[Input] A finite data set.
+  \item[Input] A finite collection of observations.
   \item[Output] A fitted parameter vector.
-  \item[Constraint] No external resources are used.
+  \item[Constraint] No external resource is loaded.
 \end{description}
 
 \newpage
@@ -256,23 +301,27 @@ A description list tests aligned labels:
 % PAGE 2
 % ============================================================
 
-\section{Methods and Mathematical Environments}
-\label{sec:methods}
+\section{Mathematical Environments}
 
-This page focuses on displayed mathematics, alignment, cases,
-matrices, definitions, proofs, and cross-references.
+This page focuses on multiline equations, matrices, piecewise
+functions, theorem environments, proofs, and an internally generated
+figure.
 
 \subsection{Aligned Equations}
 
-The \texttt{align} environment aligns equations at selected points:
+The \texttt{align} environment aligns equations at ampersand
+characters:
+
 \begin{align}
   S_n
-    &= \sum_{k=1}^{n} k
-     = 1+2+\cdots+n, \label{eq:sum-start}\\
-    &= \frac{n(n+1)}{2}. \label{eq:sum-result}
+    &= \sum_{k=1}^{n} k \\
+    &= 1+2+\cdots+n \\
+    &= \frac{n(n+1)}{2}.
 \end{align}
 
-A multiline derivation can suppress selected equation numbers:
+Selected equation numbers can be suppressed with
+\verb|\notag|:
+
 \begin{align}
   (a+b)^3
     &= (a+b)(a+b)^2 \notag\\
@@ -280,58 +329,157 @@ A multiline derivation can suppress selected equation numbers:
     &= a^3+3a^2b+3ab^2+b^3.
 \end{align}
 
-Piecewise definitions are typeset with the \texttt{cases} environment:
+The \texttt{aligned} environment can be placed inside another
+mathematical environment:
+
+$begin:math:display$
+  \\begin\{aligned\}
+    x\+y \&\= 7\,\\\\
+    2x\-y \&\= 5\,\\\\
+    3x \&\= 12\,\\\\
+    x \&\= 4\,\\qquad y\=3\.
+  \\end\{aligned\}
+$end:math:display$
+
+\subsection{Piecewise Functions and Delimiters}
+
+A piecewise function is created with the \texttt{cases} environment:
+
 \begin{equation}
-\label{eq:piecewise}
   f(x)=
   \begin{cases}
-    x^2,  & x\geq 0,\\
-    -x,   & x<0.
+    x^2,       & x\geq 0,\\
+    -x,        & -1<x<0,\\
+    1,         & x\leq -1.
   \end{cases}
 \end{equation}
 
-A matrix, determinant, and vector may be written as
-\begin{equation}
-  A=
-  \begin{bmatrix}
-    1 & 2 & 0\\
-    0 & 1 & 3\\
-    2 & 0 & 1
-  \end{bmatrix},
-  \qquad
-  \det(A)=-11,
-  \qquad
-  \vect{x}=
-  \begin{pmatrix}
-    x_1\\x_2\\x_3
-  \end{pmatrix}.
-\end{equation}
+Different delimiter styles can be tested as follows:
 
-Other mathematical structures include
 $begin:math:display$
-  \\left\\langle \\vect\{x\}\,\\vect\{y\}\\right\\rangle
-  \=
-  \\vect\{x\}\^\{\\mathsf T\}\\vect\{y\}\,
-  \\qquad
-  \\binom\{n\}\{k\}
-  \=
-  \\frac\{n\!\}\{k\!\(n\-k\)\!\}\,
-  \\qquad
-  \\lim\_\{x\\to 0\}\\frac\{\\sin x\}\{x\}\=1\.
+  \(x\)\,\\quad
+  \[x\]\,\\quad
+  \\\{x\\\}\,\\quad
+  \\langle x\\rangle\,\\quad
+  \\lfloor x\\rfloor\,\\quad
+  \\lceil x\\rceil\.
 $end:math:display$
 
+Automatically resized delimiters appear in
+
+$begin:math:display$
+  \\left\(
+    \\frac\{1\+\\frac\{1\}\{x\}\}\{1\-\\frac\{1\}\{x\}\}
+  \\right\)\,
+  \\qquad
+  \\left\[
+    \\sum\_\{k\=1\}\^\{n\} k\^2
+  \\right\]\,
+  \\qquad
+  \\left\\\{
+    x\\in\\R \: x\^2\<4
+  \\right\\\}\.
+$end:math:display$
+
+\subsection{Matrices and Arrays}
+
+Several matrix environments are shown below:
+
+$begin:math:display$
+  A\=
+  \\begin\{bmatrix\}
+    1 \& 2 \& 0\\\\
+    0 \& 1 \& 3\\\\
+    2 \& 0 \& 1
+  \\end\{bmatrix\}\,
+  \\qquad
+  \\vect\{x\}\=
+  \\begin\{pmatrix\}
+    x\_1\\\\
+    x\_2\\\\
+    x\_3
+  \\end\{pmatrix\}\.
+$end:math:display$
+
+A determinant can be written using vertical delimiters:
+
+$begin:math:display$
+  \\det\(A\)
+  \=
+  \\begin\{vmatrix\}
+    1 \& 2 \& 0\\\\
+    0 \& 1 \& 3\\\\
+    2 \& 0 \& 1
+  \\end\{vmatrix\}
+  \=13\.
+$end:math:display$
+
+An augmented matrix tests vertical rules inside an array:
+
+$begin:math:display$
+  \\left\[
+  \\begin\{array\}\{ccc\|c\}
+    1 \& 1 \& 0 \& 3\\\\
+    0 \& 1 \& 1 \& 5\\\\
+    2 \& 0 \& 1 \& 4
+  \\end\{array\}
+  \\right\]\.
+$end:math:display$
+
+Matrix operators and transposition can be displayed as
+
+$begin:math:display$
+  A\^\{\-1\}A\=I\,
+  \\qquad
+  \\tr\(A\)\=\\sum\_i a\_\{ii\}\,
+  \\qquad
+  \\rank\(A\)\\leq\\min\(m\,n\)\,
+  \\qquad
+  A\^\{\\mathsf T\}\.
+$end:math:display$
+
+\subsection{Calculus and Probability}
+
 A definite integral and an infinite series are
+
 \begin{equation}
   \int_{-\infty}^{\infty} e^{-x^2}\,dx=\sqrt{\pi},
   \qquad
   \sum_{k=0}^{\infty}\frac{x^k}{k!}=e^x.
 \end{equation}
 
-\subsection{Definitions and Theorems}
+Derivatives may be written in several forms:
+
+$begin:math:display$
+  f\'\(x\)\,
+  \\qquad
+  \\frac\{df\}\{dx\}\,
+  \\qquad
+  \\frac\{\\partial f\}\{\\partial x\}\,
+  \\qquad
+  \\nabla f\(\\vect\{x\}\)\,
+  \\qquad
+  \\nabla\^2 f\(\\vect\{x\}\)\.
+$end:math:display$
+
+Probability notation can be tested with
+
+$begin:math:display$
+  \\Pr\(X\\leq x\)\,
+  \\qquad
+  \\E\[X\]\,
+  \\qquad
+  \\operatorname\{Var\}\(X\)\,
+  \\qquad
+  X\\sim\\mathcal\{N\}\(\\mu\,\\sigma\^2\)\.
+$end:math:display$
+
+\subsection{Definitions, Theorems, and Proofs}
 
 \begin{definition}[Convex function]
-A function $begin:math:text$f\:\\R\^d\\rightarrow\\R$end:math:text$ is convex when, for every
+A function $begin:math:text$f\:\\R\^d\\rightarrow\\R$end:math:text$ is convex if, for all
 $begin:math:text$\\vect\{x\}\,\\vect\{y\}\\in\\R\^d$end:math:text$ and $begin:math:text$t\\in\[0\,1\]$end:math:text$,
+
 $begin:math:display$
   f\\bigl\(t\\vect\{x\}\+\(1\-t\)\\vect\{y\}\\bigr\)
   \\leq
@@ -340,57 +488,73 @@ $end:math:display$
 \end{definition}
 
 \begin{lemma}
-\label{lem:square}
-For every real number $begin:math:text$x$end:math:text$, one has $begin:math:text$x\^2\\geq 0$end:math:text$.
+For every real number $begin:math:text$x$end:math:text$, the inequality $begin:math:text$x\^2\\geq0$end:math:text$ holds.
 \end{lemma}
 
 \begin{proof}
-If $begin:math:text$x\\geq0$end:math:text$, then $begin:math:text$x\^2\=x\\cdot x\\geq0$end:math:text$.
-If $begin:math:text$x\<0$end:math:text$, then $begin:math:text$\-x\>0$end:math:text$, and
-$begin:math:text$x\^2\=\(\-x\)\^2\\geq0$end:math:text$.
+When $begin:math:text$x\\geq0$end:math:text$, the product $begin:math:text$x\\cdot x$end:math:text$ is nonnegative.
+When $begin:math:text$x\<0$end:math:text$, the number $begin:math:text$\-x$end:math:text$ is positive and
+$begin:math:text$x\^2\=\(\-x\)\^2$end:math:text$. Therefore $begin:math:text$x\^2\\geq0$end:math:text$ in both cases.
 \end{proof}
 
-\begin{theorem}[Mean minimization]
-\label{thm:mean}
+\begin{theorem}[Arithmetic mean minimization]
 Let $begin:math:text$x\_1\,\\ldots\,x\_n\\in\\R$end:math:text$. The function
 $begin:math:display$
   Q\(c\)\=\\sum\_\{i\=1\}\^\{n\}\(x\_i\-c\)\^2
 $end:math:display$
-is minimized at the arithmetic mean
-$begin:math:text$\\bar\{x\}\=n\^\{\-1\}\\sum\_\{i\=1\}\^\{n\}x\_i$end:math:text$.
+is minimized at
+$begin:math:display$
+  \\bar\{x\}\=\\frac\{1\}\{n\}\\sum\_\{i\=1\}\^\{n\}x\_i\.
+$end:math:display$
 \end{theorem}
 
 \begin{proof}
-Write $begin:math:text$x\_i\-c\=\(x\_i\-\\bar\{x\}\)\+\(\\bar\{x\}\-c\)$end:math:text$. Expanding gives
+Write
+$begin:math:display$
+  x\_i\-c\=\(x\_i\-\\bar\{x\}\)\+\(\\bar\{x\}\-c\)\.
+$end:math:display$
+After expansion,
+
 \begin{align*}
   Q(c)
     &=
     \sum_{i=1}^{n}(x_i-\bar{x})^2\\
-    &\quad
-    +2(\bar{x}-c)\sum_{i=1}^{n}(x_i-\bar{x})\\
-    &\quad
-    +n(\bar{x}-c)^2.
+    &\quad+
+    2(\bar{x}-c)
+    \sum_{i=1}^{n}(x_i-\bar{x})\\
+    &\quad+
+    n(\bar{x}-c)^2.
 \end{align*}
-The middle term is zero by the definition of $begin:math:text$\\bar\{x\}$end:math:text$.
-The last term is nonnegative by Lemma~\ref{lem:square} and is zero
-exactly when $begin:math:text$c\=\\bar\{x\}$end:math:text$.
+
+The middle sum equals zero. The final term is nonnegative and becomes
+zero precisely when $begin:math:text$c\=\\bar\{x\}$end:math:text$. Thus the arithmetic mean minimizes
+the squared error.
 \end{proof}
 
+\begin{example}
+For the values $begin:math:text$2\,4\,6$end:math:text$, the arithmetic mean is $begin:math:text$4$end:math:text$. The squared
+error at $begin:math:text$c\=4$end:math:text$ is
+$begin:math:display$
+  \(2\-4\)\^2\+\(4\-4\)\^2\+\(6\-4\)\^2\=8\.
+$end:math:display$
+\end{example}
+
 \begin{remark}
-The optional theorem title, theorem numbering, proof symbol, and
-cross-reference are all tested in Theorem~\ref{thm:mean}.
+This unnumbered environment tests a distinct theorem style without
+creating any cross-reference information.
 \end{remark}
 
-\subsection{An Internally Generated Figure}
+\subsection{Internally Generated Figure}
 
-Figure~\ref{fig:internal-figure} uses only standard \LaTeX{} boxes,
-rules, and text. It does not load an external image.
+The following figure uses only the standard \texttt{picture}
+environment. No image file is loaded.
 
 \begin{figure}[htbp]
   \centering
   \setlength{\unitlength}{1mm}
+
   \begin{picture}(72,34)
-    % Axes
+    % Coordinate axes
     \put(8,5){\vector(1,0){58}}
     \put(8,5){\vector(0,1){25}}
 
@@ -403,23 +567,22 @@ rules, and text. It does not load an external image.
     \multiput(18,4)(10,0){5}{\line(0,1){2}}
     \multiput(7,10)(0,5){4}{\line(1,0){2}}
 
-    % Approximate increasing curve made from line segments
+    % A piecewise linear curve
     \put(8,6){\line(1,0){10}}
     \put(18,6){\line(2,1){10}}
     \put(28,11){\line(2,1){10}}
     \put(38,16){\line(2,1){10}}
     \put(48,21){\line(2,1){10}}
 
-    % Point marker and annotation
+    % Point and annotation
     \put(37.3,15.3){\circle*{1.5}}
-    \put(40,13){\scriptsize observed point}
+    \put(40,13){\scriptsize sample point}
   \end{picture}
+
   \caption{
-    A schematic plot created entirely within the document.
-    The drawing tests vectors, lines, repeated objects, labels,
-    mathematical text, and captions.
+    A schematic plot generated entirely by \LaTeX{} commands.
+    It tests lines, vectors, repeated objects, labels, and captions.
   }
-  \label{fig:internal-figure}
 \end{figure}
 
 \newpage
@@ -428,23 +591,22 @@ rules, and text. It does not load an external image.
 % PAGE 3
 % ============================================================
 
-\section{Results, Tables, Code, and Citations}
-\label{sec:results}
+\section{Tables, Code, and Additional Features}
 
-This page tests floating tables, multirow cells, colored text,
-verbatim-like source code, bibliography entries, and references to
-earlier material.
+This page tests floating tables, merged table cells, source-code
+listings, verbatim text, colors, minipages, and typographical
+details.
 
-\subsection{Example Results}
+\subsection{Basic Table}
 
-Table~\ref{tab:results} compares three hypothetical methods.
-The values are illustrative rather than empirical.
+The following table uses professional horizontal rules from the
+\texttt{booktabs} package:
 
 \begin{table}[htbp]
   \centering
   \caption{Example performance measurements.}
-  \label{tab:results}
   \small
+
   \begin{tabular}{
     >{\raggedright\arraybackslash}p{16mm}
     c
@@ -473,123 +635,196 @@ The values are illustrative rather than empirical.
   \end{tabular}
 \end{table}
 
-A more structurally complex table is shown below.
+\subsection{Grouped Table}
+
+Merged rows and partial rules are demonstrated below:
 
 \begin{table}[htbp]
   \centering
   \caption{Grouped measurements with merged cells.}
-  \label{tab:grouped}
   \small
+
   \begin{tabular}{llrr}
     \toprule
     Group & Condition & Mean & Std. dev.\\
     \midrule
+
     \multirow{2}{*}{A}
       & Control   & 12.4 & 1.8\\
       & Treatment & 15.7 & 1.3\\
+
     \cmidrule(lr){1-4}
+
     \multirow{2}{*}{B}
       & Control   & 11.9 & 2.1\\
       & Treatment & 16.2 & 1.5\\
+
     \bottomrule
   \end{tabular}
 \end{table}
 
-The main result in Table~\ref{tab:results} is consistent with the
-optimization model in Equation~\eqref{eq:objective}.
-The internal figure appears as Figure~\ref{fig:internal-figure},
-while the mathematical result is stated in
-Theorem~\ref{thm:mean}.
+\subsection{Colored Text and Boxes}
 
 Color rendering can be checked with
-\textcolor{blue}{blue text},
-\textcolor{darkgreen}{green text},
-and
-\colorbox{yellow!35}{highlighted text}.
-These colors are generated internally and require no external files.
 
-\subsection{Algorithmic Pseudocode}
+\begin{center}
+  \textcolor{darkblue}{blue text},
+  \qquad
+  \textcolor{darkgreen}{green text},
+  \qquad
+  \textcolor{darkred}{red text}.
+\end{center}
 
-The following source-code listing tests indentation, line numbering,
-comments, mathematical-looking identifiers, and line wrapping.
+Background colors can be tested with
 
-\begin{lstlisting}[language=Python,caption={A compact gradient-descent example.},label={lst:gradient}]
-def gradient_descent(x0, learning_rate=0.1,
-                     tolerance=1e-8, max_iter=1000):
+\begin{center}
+  \colorbox{yellow!35}{highlighted text}
+  \qquad
+  \fcolorbox{black}{gray!15}{framed text}.
+\end{center}
+
+A simple rule and spacing test appears below:
+
+$begin:math:display$
+  \\rule\{20mm\}\{0\.4pt\}
+  \\qquad
+  \\rule\{10mm\}\{2pt\}
+  \\qquad
+  \\rule\[\-2mm\]\{8mm\}\{6mm\}\.
+$end:math:display$
+
+\subsection{Source-Code Listing}
+
+The following listing tests indentation, line numbers, syntax
+highlighting, comments, strings, long lines, and underscores:
+
+\begin{lstlisting}[
+  language=Python,
+  caption={A compact gradient-descent example.}
+]
+def gradient_descent(
+    initial_value,
+    learning_rate=0.1,
+    tolerance=1e-8,
+    max_iterations=1000
+):
     """Minimize f(x) = (x - 3)^2."""
-    x = float(x0)
 
-    for iteration in range(max_iter):
+    x = float(initial_value)
+
+    for iteration in range(max_iterations):
         gradient = 2.0 * (x - 3.0)
         candidate = x - learning_rate * gradient
 
-        # Stop when the update is sufficiently small.
+        # Stop if the update is sufficiently small.
         if abs(candidate - x) < tolerance:
             return candidate, iteration + 1
 
         x = candidate
 
-    return x, max_iter
+    return x, max_iterations
 \end{lstlisting}
 
-Listing~\ref{lst:gradient} is not executed by \LaTeX; it is included
-only to test syntax highlighting and verbatim-like content.
-Characters that normally have special meanings, such as
-\verb|#|, \verb|_|, \verb|%|, and \verb|\|, can be printed inside
-the \verb|\verb| command.
+The listing is displayed but not executed. Its purpose is to test
+verbatim-like source text inside the generated PDF.
 
-\subsection{Discussion}
+\subsection{Inline Verbatim and Verbatim Block}
 
-The examples demonstrate several kinds of document structure.
-Section~\ref{sec:introduction} introduced text formatting and lists.
-Section~\ref{sec:methods} tested mathematical environments and an
-internal drawing. Section~\ref{sec:results} added tables, code, color,
-and references.
+The \verb|\verb| command can display reserved characters without
+escaping them individually:
 
-Bibliographic citations can be written in textual form, as in
-Lamport's original description of \LaTeX{}~\cite{lamport1994},
-or grouped together~\cite{knuth1984,mittelbach2004}.
-The bibliography below is embedded directly in this source file,
-so no Bib\TeX{} database is needed.
+\begin{center}
+  \verb|# $ % & _ { } \|
+\end{center}
+
+A larger block can be displayed using the \texttt{verbatim}
+environment:
+
+\begin{verbatim}
+This text preserves    repeated spaces.
+Special characters: # $ % & _ { } \
+Commands such as \section are not executed here.
+\end{verbatim}
+
+\subsection{Minipages}
+
+Two independently formatted blocks can be placed side by side:
+
+\begin{center}
+  \begin{minipage}[t]{0.46\columnwidth}
+    \centering
+    \textbf{Block A}
+
+    \smallskip
+
+    Left-side content with centered text and an equation:
+    $begin:math:display$
+      a\^2\+b\^2\=c\^2\.
+    $end:math:display$
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.46\columnwidth}
+    \centering
+    \textbf{Block B}
+
+    \smallskip
+
+    Right-side content with a short list:
+    \begin{itemize}
+      \item first;
+      \item second.
+    \end{itemize}
+  \end{minipage}
+\end{center}
+
+\subsection{Text Alignment and Spacing}
+
+\begin{flushleft}
+This paragraph is explicitly left aligned.
+\end{flushleft}
+
+\begin{center}
+This line is centered.
+\end{center}
+
+\begin{flushright}
+This line is right aligned.
+\end{flushright}
+
+Horizontal spacing can be inserted with
+small space $begin:math:text$a\\\,b$end:math:text$,
+medium space $begin:math:text$a\\\:b$end:math:text$,
+large space $begin:math:text$a\\\;b$end:math:text$,
+quad space $begin:math:text$a\\quad b$end:math:text$,
+and double-quad space $begin:math:text$a\\qquad b$end:math:text$.
+
+Vertical spacing can be controlled using commands such as
+\verb|\smallskip|, \verb|\medskip|, and \verb|\bigskip|.
 
 \subsection{Conclusion}
 
-This document provides a reproducible test for a general-purpose
-\LaTeX{} editor. Successful compilation indicates support for:
+This three-page source tests the following editor and renderer
+features:
 
 \begin{enumerate}[label=\arabic*.]
-  \item common paper structure and typography;
-  \item mathematical notation and theorem environments;
-  \item labels, references, hyperlinks, and citations;
-  \item tables, internally generated graphics, and source listings;
-  \item headers, footers, captions, colors, and page breaks.
+  \item paper-style title, abstract, sections, and columns;
+  \item bold, italic, monospaced, small-cap, and escaped text;
+  \item inline, displayed, aligned, and numbered mathematics;
+  \item matrices, cases, calculus, probability, and custom commands;
+  \item definitions, lemmas, theorems, examples, and proofs;
+  \item lists, tables, merged cells, captions, and floating objects;
+  \item an internally generated figure without an image file;
+  \item code listings, verbatim blocks, colors, and minipages;
+  \item page headers, page footers, footnotes, and explicit breaks.
 \end{enumerate}
 
-The explicit page boundaries also make page navigation, PDF preview,
-zooming, synchronization, and page-number rendering easy to inspect.
+Because labels, references, citations, hyperlinks, and bibliography
+commands are not used, the document does not depend on information
+from a previous compilation pass.
 
 \section*{Acknowledgments}
 
-The author thanks the maintainers of \TeX{} and \LaTeX{} for providing
-a stable system for reproducible scientific typesetting.
-
-\begin{thebibliography}{9}
-
-\bibitem{knuth1984}
-Donald E. Knuth.
-\newblock \emph{The \TeX book}.
-\newblock Addison--Wesley, 1984.
-
-\bibitem{lamport1994}
-Leslie Lamport.
-\newblock \emph{\LaTeX: A Document Preparation System}.
-\newblock Addison--Wesley, second edition, 1994.
-
-\bibitem{mittelbach2004}
-Frank Mittelbach and Michel Goossens.
-\newblock \emph{The \LaTeX{} Companion}.
-\newblock Addison--Wesley, second edition, 2004.
-
-\end{thebibliography}
+This test document uses only content and resources declared directly
+inside the single \texttt{.tex} source file.
 
 \end{document}
