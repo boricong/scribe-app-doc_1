@@ -1,243 +1,595 @@
-% Template for the Journal of Computational Science and Applications (JCSA)
-% Published by the University of Lahore -- ISSN 2710-3102
-% Official author guidelines: https://journals.uol.edu.pk/JCSA/Author-Guideline
-\documentclass[twoside,twocolumn,10pt]{article}
-\usepackage{lipsum}  % For sample/placeholder text
-\usepackage{fancyhdr}
-\usepackage{geometry}
-\usepackage{multicol}
-\usepackage{abstract}
+\documentclass[10pt,a4paper,twocolumn]{article}
+
+% ============================================================
+% LaTeX Editor Feature Test
+% Compile with: pdfLaTeX
+% No external images, fonts, bibliography files, or data files.
+% ============================================================
+
+% ---------- Page and typography ----------
+\usepackage[
+  a4paper,
+  top=18mm,
+  bottom=20mm,
+  left=17mm,
+  right=17mm,
+  columnsep=7mm
+]{geometry}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% ---------- Mathematics ----------
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{bm}
+
+% ---------- Tables, graphics, and lists ----------
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
 \usepackage{graphicx}
-\usepackage{caption}
-\usepackage{titlesec}
-\usepackage{ragged2e}  % Provides the justifying command
-\usepackage{amssymb}  % For additional symbols
-\usepackage{parskip}  % Automatically handles paragraph spacing
-\usepackage{amsmath}  % For advanced math environments
-\usepackage{newtxtext}  % Times New Roman font
-\usepackage{booktabs}  % For improved table appearance
-\usepackage{array}     % For customizing table columns
+\usepackage{xcolor}
+\usepackage{enumitem}
 
-% The starting page number is normally assigned by the editorial office
-% once the article is scheduled into a specific issue. Authors can leave
-% this at 1; production will update it if required.
-\setcounter{page}{1}
+% ---------- Captions and links ----------
+\usepackage[
+  font=small,
+  labelfont=bf
+]{caption}
 
-% Define custom column types for better alignment and spacing
-\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}} % Left aligned column
-\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}   % Center aligned column
-\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}  % Right aligned column
+\usepackage[
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=teal,
+  urlcolor=violet,
+  pdfauthor={LaTeX Editor Test},
+  pdftitle={A Self-Contained Three-Page LaTeX Test Document}
+]{hyperref}
 
-\usepackage[font=footnotesize, labelfont=bf, justification=raggedright, format=plain]{caption}
+% ---------- Code-like text ----------
+\usepackage{listings}
 
-\captionsetup[table]{
-    labelsep=period,               % Period after label for tables
-    justification=raggedright      % Ensure left alignment of captions
+% ---------- Header and footer ----------
+\usepackage{fancyhdr}
+
+% ---------- General settings ----------
+\setlength{\parindent}{1em}
+\setlength{\parskip}{0pt}
+\setlength{\columnsep}{7mm}
+\setlist{nosep}
+
+\definecolor{codegray}{gray}{0.96}
+\definecolor{darkgreen}{rgb}{0.0,0.45,0.15}
+\definecolor{darkred}{rgb}{0.55,0.0,0.0}
+
+\lstset{
+  basicstyle=\ttfamily\scriptsize,
+  backgroundcolor=\color{codegray},
+  frame=single,
+  rulecolor=\color{black!35},
+  numbers=left,
+  numberstyle=\tiny\color{black!55},
+  keywordstyle=\bfseries\color{blue},
+  commentstyle=\itshape\color{darkgreen},
+  stringstyle=\color{darkred},
+  breaklines=true,
+  showstringspaces=false,
+  columns=fullflexible,
+  tabsize=2
 }
 
-\captionsetup[figure]{
-    labelsep=period,               % Period after label for figures
-    justification=raggedright      % Ensure left alignment of captions
-}
+% ---------- Theorem environments ----------
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
 
-\usepackage[backend=bibtex,style=ieee]{biblatex}
-\addbibresource{references.bib}  % Add your .bib file
-% Customizing bibliography heading
-\defbibheading{bibliography}[\refname]{%
-  \section{\MakeUppercase{REFERENCES}}}
+% ---------- Custom commands ----------
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\vect}[1]{\bm{#1}}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator*{\argmin}{arg\,min}
 
-% Set page margins
-\geometry{
-    a4paper,
-    left=0.8in,
-    right=0.8in,
-    top=1in,
-    bottom=1in
-}
-
-% Increase space between columns
-\setlength{\columnsep}{15pt}
-
-% Define the centred abstract heading
-\renewcommand{\abstractname}{\hspace{1.3em}\textbf{Abstract}}
-
-\titleformat{\section}{\large\bfseries\uppercase}{\thesection.}{1em}{}
-
-\titleformat{\subsection}{\normalfont\bfseries\flushleft}{\thesubsection.}{1em}{}
-
-\titleformat{\subsubsection}{\normalfont\bfseries\itshape\flushleft}{\thesubsubsection}{1em}{}
-
-% Set font sizes for abstract
-\renewcommand{\abstractnamefont}{\normalfont\fontsize{14}{20}\bfseries}
-\renewcommand{\absnamepos}{flushleft}
-\renewcommand{\abstracttextfont}{\normalfont\fontsize{11}{13}\selectfont}
-
-% Keywords environment
-\newcommand{\keywordsname}{Keywords}
-\newenvironment{keywords}
-  {\par\noindent\hspace{2em}\textbf{\keywordsname:}}
-  {\par}
-
-\hyphenpenalty=10000
-\exhyphenpenalty=10000
-\sloppy
-
-% Set up header and footer styles
+% ---------- Running header ----------
 \pagestyle{fancy}
-\fancyhf{}  % Clear default header and footer
-
-% Odd page headers -- replace with a short running form of your title
-\fancyhead[C]{\small Running Title of the Paper}
-
-% Even page headers -- replace with the first author's surname and year
-\fancyhead[CE]{\small Author Surname et al. (Year)}
-
-% Footer: Page numbers only (on all pages except the first one)
+\fancyhf{}
+\fancyhead[L]{LaTeX Editor Feature Test}
+\fancyhead[R]{Self-Contained Paper}
 \fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
 
-% First page custom header/footer
-\fancypagestyle{firstpage}{
-  \fancyhf{}  % Clear header and footer
-  \fancyhead[LO]{\small Volume X, Issue Y, Year}  % Left header for first page
-  \fancyhead[RO]{\small J. Comput. Sci. Appl.}  % Right header for first page
-  \fancyfoot[L]{\footnotesize Received: Month Year; Revised: Month Year; Accepted: Month Year\\\textsuperscript{*}Corresponding Author: Full Name \textless email@example.com\textgreater}
-   \fancyfoot[R]{\footnotesize \copyright\ Year by the Author(s). Published by JCSA,\\\textsuperscript{*} under the CC-BY license }
-  \renewcommand{\headrulewidth}{0.4pt}  % Add header line
-  \renewcommand{\footrulewidth}{0.4pt}  % Add footer line
+% ---------- Title information ----------
+\title{
+  \textbf{A Self-Contained Three-Page Test Document}\\
+  \large Demonstrating Common \LaTeX{} Syntax in a Paper-Style Layout
 }
 
-\title{\fontsize{16}{20}\selectfont\textbf{Title of the Manuscript Goes Here}}
 \author{
-    \fontsize{12}{14}\selectfont
-    First Author\textsuperscript{1*}, Second Author\textsuperscript{2}\\[1ex]
-    \fontsize{12}{14}\selectfont
-    \textsuperscript{1}Department Name, University Name, City, Country \\
-   \textsuperscript{2}Department Name, University Name, City, Country
+  Example Author\thanks{
+    This footnote tests author notes and special symbols:
+    \%, \$, \&, \#, \_, \{, and \}.
+  }\\
+  Department of Reproducible Documents\\
+  \texttt{author@example.com}
 }
-\date{}
+
+\date{\today}
 
 \begin{document}
 
-\twocolumn[
-\begin{@twocolumnfalse}
-% Change "Research Article" to the appropriate article type if needed
-% (e.g. Review Article, Short Communication).
-\vspace{-0.5cm}  % Adjust spacing as needed between header and "Research Article"
-\raggedright
+% ============================================================
+% PAGE 1
+% ============================================================
 
-{\fontsize{11}{13}\selectfont{Research Article}}
-\vspace{-0.8cm}  % Adjust spacing between "Research Article" and title
-
-% Now, insert the title and the author information
 \maketitle
 
-\thispagestyle{firstpage} % Apply custom header/footer for first page
 \begin{abstract}
-\fontsize{11}{13}\selectfont
-\vspace{1em}
-\justifying
-\textit{[Replace this paragraph with your abstract. The abstract should be a single, self-contained paragraph of approximately 150--250 words summarizing the purpose of the study, the methodology used, the principal results, and the main conclusions. Avoid citations, footnotes, and undefined abbreviations in the abstract.]}
-
-\vspace{-0.1cm}
-\noindent\textbf{keywords}
- Keyword one, Keyword two, Keyword three, Keyword four.
-
+This document is a compact test suite for a \LaTeX{} editor.
+It contains sectioning commands, mathematical notation, theorem
+environments, cross-references, lists, tables, internally generated
+graphics, source-code listings, hyperlinks, citations, footnotes,
+and a bibliography. No external image, font, bibliography, or data
+file is required. Explicit page breaks are used so that the document
+has a predictable three-page structure.
 \end{abstract}
 
-\vspace{1cm}
-\end{@twocolumnfalse}
-]
+\noindent
+\textbf{Keywords:}
+\LaTeX, editor testing, mathematical typesetting, cross-reference,
+table, bibliography
+
 \section{Introduction}
-\fontsize{12}{14}\selectfont
-\textit{[Replace this section with your Introduction. Provide sufficient background to place the work in context, state the problem being addressed, and summarize the objectives and contributions of the study. The example paragraph below shows the default paragraph style, justification, and hyphenation settings used throughout the template.]}
+\label{sec:introduction}
 
-\lipsum[1]
+Scientific documents usually combine prose, notation, structured
+arguments, tables, and figures. A useful editor test should therefore
+exercise more than plain text. This file is designed to compile as a
+single, self-contained source document.
 
-In-text citations use the \verb|\cite| command and follow the IEEE numbered style configured for this template, e.g., a single reference \cite{1_Su2022} or multiple references \cite{2_Lind2021, 3_Kuwahara2022}.
+Text formatting can be tested with
+\textbf{bold text},
+\textit{italic text},
+\emph{emphasized text},
+\texttt{monospaced text},
+and \textsc{small capitals}.
+Quotation marks should appear correctly as
+``double quotation marks'' and `single quotation marks'.
 
-\section{Literature Review}
-\fontsize{12}{14}\selectfont
-\textit{[Replace this section with a review of the relevant prior literature, positioning your contribution relative to existing work.]}
+Common symbols include
+\LaTeX{},
+\TeX{},
+\S~1,
+\copyright,
+\pounds,
+and the escaped characters
+\# \$ \% \& \_ \{ \}.
+A nonbreaking space can be tested in expressions such as
+Figure~\ref{fig:internal-figure} and Table~\ref{tab:results}.
 
-\lipsum[2-3]
-
-\section{Methodology and Data}
-\textit{[Replace this section with a description of your data sources and methodology.]}
-\fontsize{12}{14}\selectfont
-\lipsum[4]
-
-\subsection{Example Subsection}
-\fontsize{12}{14}\selectfont
-\textit{[Use subsections to organize the methodology, e.g., data description, variable construction, and model specification.]}
-
-\lipsum[5]
-
-\subsection{Example Second Subsection}
-\fontsize{12}{14}\selectfont
-\lipsum[6]
-
-\subsubsection{Example Subsubsection}
-
-\textit{[Subsubsections are available for finer-grained organization where needed.]}
-
-\section{Results and Discussion}
-
-\textit{[Replace this section with your results and discussion. The example figures and table below demonstrate the recommended formatting for graphical and tabular content in this template.]}
-
-\lipsum[7]
-
-Figure~\ref{fig:example-one} and Figure~\ref{fig:example-two} illustrate how single-column-width figures are placed and captioned within the two-column layout. Table~\ref{tab:example-table} illustrates the recommended table style.
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.5\textwidth]{Figure_1_AI_vs_Renewable.png}
-\caption{Example figure demonstrating image placement and caption formatting.}
-\label{fig:example-one}
-\end{figure}
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.5\textwidth]{Figure_2_Energy_vs_AI.png}
-\caption{Example figure demonstrating a second illustration within the layout.}
-\label{fig:example-two}
-\end{figure}
-
-\begin{table}[h]
-\centering
-\caption{Example table demonstrating the recommended table formatting.}
-\label{tab:example-table}
-\resizebox{\columnwidth}{!}{%
-\begin{tabular}{|c|c|c|}
-\hline
-\textbf{Category} & \textbf{Metric A} & \textbf{Metric B} \\
-\hline
-Group 1 & 0.85 & 12\% \\
-Group 2 & 0.78 & 10\% \\
-Group 3 & 0.65 & 8\% \\
-Group 4 & 0.50 & 5\% \\
-\hline
-\end{tabular}%
+This sentence contains a footnote.\footnote{
+Footnotes may contain formatted text such as
+\textit{italics}, mathematics such as $begin:math:text$x\^2\+y\^2$end:math:text$, and references
+such as Section~\ref{sec:methods}.
 }
+The document also includes an external hyperlink to the
+\href{https://www.latex-project.org/}{\LaTeX{} Project website},
+although opening the link is not required for compilation.
+
+\subsection{Inline Mathematics}
+
+Inline mathematics may contain Greek letters and operators:
+$begin:math:display$
+  \\alpha\,\\ \\beta\,\\ \\Gamma\,\\ \\Delta\,\\ \\theta\,\\ \\lambda\,\\ \\mu\,\\ \\sigma\,
+  \\qquad
+  \\sum\,\\ \\prod\,\\ \\int\,\\ \\lim\,\\ \\nabla\.
+$end:math:display$
+In running text, one may write
+$begin:math:text$f\(x\)\=x\^2$end:math:text$,
+$begin:math:text$\\E\[X\]\=\\mu$end:math:text$,
+or
+$begin:math:text$\\norm\{\\vect\{x\}\}\_2 \= \\sqrt\{\\sum\_i x\_i\^2\}$end:math:text$.
+
+The following numbered equation demonstrates fractions, subscripts,
+superscripts, and automatic delimiter sizing:
+\begin{equation}
+\label{eq:objective}
+  \widehat{\vect{\theta}}
+  =
+  \argmin_{\vect{\theta}\in\R^d}
+  \left\{
+    \frac{1}{n}
+    \sum_{i=1}^{n}
+    \left(
+      y_i-\vect{x}_i^{\mathsf T}\vect{\theta}
+    \right)^2
+    +\lambda\norm{\vect{\theta}}_2^2
+  \right\}.
+\end{equation}
+
+Equation~\eqref{eq:objective} is a regularized least-squares objective.
+References should update automatically after sufficient compilation
+passes.
+
+\subsection{Lists and Descriptions}
+
+A compact itemized list tests bullet indentation:
+
+\begin{itemize}
+  \item plain text and punctuation;
+  \item inline mathematics, $begin:math:text$a\^2\+b\^2\=c\^2$end:math:text$;
+  \item nested content:
+    \begin{itemize}
+      \item first nested item;
+      \item second nested item.
+    \end{itemize}
+\end{itemize}
+
+An enumerated list tests counters:
+
+\begin{enumerate}[label=(\roman*)]
+  \item define the model;
+  \item estimate its parameters;
+  \item evaluate the result.
+\end{enumerate}
+
+A description list tests aligned labels:
+
+\begin{description}[style=nextline]
+  \item[Input] A finite data set.
+  \item[Output] A fitted parameter vector.
+  \item[Constraint] No external resources are used.
+\end{description}
+
+\newpage
+
+% ============================================================
+% PAGE 2
+% ============================================================
+
+\section{Methods and Mathematical Environments}
+\label{sec:methods}
+
+This page focuses on displayed mathematics, alignment, cases,
+matrices, definitions, proofs, and cross-references.
+
+\subsection{Aligned Equations}
+
+The \texttt{align} environment aligns equations at selected points:
+\begin{align}
+  S_n
+    &= \sum_{k=1}^{n} k
+     = 1+2+\cdots+n, \label{eq:sum-start}\\
+    &= \frac{n(n+1)}{2}. \label{eq:sum-result}
+\end{align}
+
+A multiline derivation can suppress selected equation numbers:
+\begin{align}
+  (a+b)^3
+    &= (a+b)(a+b)^2 \notag\\
+    &= (a+b)(a^2+2ab+b^2) \notag\\
+    &= a^3+3a^2b+3ab^2+b^3.
+\end{align}
+
+Piecewise definitions are typeset with the \texttt{cases} environment:
+\begin{equation}
+\label{eq:piecewise}
+  f(x)=
+  \begin{cases}
+    x^2,  & x\geq 0,\\
+    -x,   & x<0.
+  \end{cases}
+\end{equation}
+
+A matrix, determinant, and vector may be written as
+\begin{equation}
+  A=
+  \begin{bmatrix}
+    1 & 2 & 0\\
+    0 & 1 & 3\\
+    2 & 0 & 1
+  \end{bmatrix},
+  \qquad
+  \det(A)=-11,
+  \qquad
+  \vect{x}=
+  \begin{pmatrix}
+    x_1\\x_2\\x_3
+  \end{pmatrix}.
+\end{equation}
+
+Other mathematical structures include
+$begin:math:display$
+  \\left\\langle \\vect\{x\}\,\\vect\{y\}\\right\\rangle
+  \=
+  \\vect\{x\}\^\{\\mathsf T\}\\vect\{y\}\,
+  \\qquad
+  \\binom\{n\}\{k\}
+  \=
+  \\frac\{n\!\}\{k\!\(n\-k\)\!\}\,
+  \\qquad
+  \\lim\_\{x\\to 0\}\\frac\{\\sin x\}\{x\}\=1\.
+$end:math:display$
+
+A definite integral and an infinite series are
+\begin{equation}
+  \int_{-\infty}^{\infty} e^{-x^2}\,dx=\sqrt{\pi},
+  \qquad
+  \sum_{k=0}^{\infty}\frac{x^k}{k!}=e^x.
+\end{equation}
+
+\subsection{Definitions and Theorems}
+
+\begin{definition}[Convex function]
+A function $begin:math:text$f\:\\R\^d\\rightarrow\\R$end:math:text$ is convex when, for every
+$begin:math:text$\\vect\{x\}\,\\vect\{y\}\\in\\R\^d$end:math:text$ and $begin:math:text$t\\in\[0\,1\]$end:math:text$,
+$begin:math:display$
+  f\\bigl\(t\\vect\{x\}\+\(1\-t\)\\vect\{y\}\\bigr\)
+  \\leq
+  t f\(\\vect\{x\}\)\+\(1\-t\)f\(\\vect\{y\}\)\.
+$end:math:display$
+\end{definition}
+
+\begin{lemma}
+\label{lem:square}
+For every real number $begin:math:text$x$end:math:text$, one has $begin:math:text$x\^2\\geq 0$end:math:text$.
+\end{lemma}
+
+\begin{proof}
+If $begin:math:text$x\\geq0$end:math:text$, then $begin:math:text$x\^2\=x\\cdot x\\geq0$end:math:text$.
+If $begin:math:text$x\<0$end:math:text$, then $begin:math:text$\-x\>0$end:math:text$, and
+$begin:math:text$x\^2\=\(\-x\)\^2\\geq0$end:math:text$.
+\end{proof}
+
+\begin{theorem}[Mean minimization]
+\label{thm:mean}
+Let $begin:math:text$x\_1\,\\ldots\,x\_n\\in\\R$end:math:text$. The function
+$begin:math:display$
+  Q\(c\)\=\\sum\_\{i\=1\}\^\{n\}\(x\_i\-c\)\^2
+$end:math:display$
+is minimized at the arithmetic mean
+$begin:math:text$\\bar\{x\}\=n\^\{\-1\}\\sum\_\{i\=1\}\^\{n\}x\_i$end:math:text$.
+\end{theorem}
+
+\begin{proof}
+Write $begin:math:text$x\_i\-c\=\(x\_i\-\\bar\{x\}\)\+\(\\bar\{x\}\-c\)$end:math:text$. Expanding gives
+\begin{align*}
+  Q(c)
+    &=
+    \sum_{i=1}^{n}(x_i-\bar{x})^2\\
+    &\quad
+    +2(\bar{x}-c)\sum_{i=1}^{n}(x_i-\bar{x})\\
+    &\quad
+    +n(\bar{x}-c)^2.
+\end{align*}
+The middle term is zero by the definition of $begin:math:text$\\bar\{x\}$end:math:text$.
+The last term is nonnegative by Lemma~\ref{lem:square} and is zero
+exactly when $begin:math:text$c\=\\bar\{x\}$end:math:text$.
+\end{proof}
+
+\begin{remark}
+The optional theorem title, theorem numbering, proof symbol, and
+cross-reference are all tested in Theorem~\ref{thm:mean}.
+\end{remark}
+
+\subsection{An Internally Generated Figure}
+
+Figure~\ref{fig:internal-figure} uses only standard \LaTeX{} boxes,
+rules, and text. It does not load an external image.
+
+\begin{figure}[htbp]
+  \centering
+  \setlength{\unitlength}{1mm}
+  \begin{picture}(72,34)
+    % Axes
+    \put(8,5){\vector(1,0){58}}
+    \put(8,5){\vector(0,1){25}}
+
+    % Axis labels
+    \put(65,1){\small $begin:math:text$x$end:math:text$}
+    \put(3,29){\small $begin:math:text$y$end:math:text$}
+    \put(5,1){\small $begin:math:text$0$end:math:text$}
+
+    % Tick marks
+    \multiput(18,4)(10,0){5}{\line(0,1){2}}
+    \multiput(7,10)(0,5){4}{\line(1,0){2}}
+
+    % Approximate increasing curve made from line segments
+    \put(8,6){\line(1,0){10}}
+    \put(18,6){\line(2,1){10}}
+    \put(28,11){\line(2,1){10}}
+    \put(38,16){\line(2,1){10}}
+    \put(48,21){\line(2,1){10}}
+
+    % Point marker and annotation
+    \put(37.3,15.3){\circle*{1.5}}
+    \put(40,13){\scriptsize observed point}
+  \end{picture}
+  \caption{
+    A schematic plot created entirely within the document.
+    The drawing tests vectors, lines, repeated objects, labels,
+    mathematical text, and captions.
+  }
+  \label{fig:internal-figure}
+\end{figure}
+
+\newpage
+
+% ============================================================
+% PAGE 3
+% ============================================================
+
+\section{Results, Tables, Code, and Citations}
+\label{sec:results}
+
+This page tests floating tables, multirow cells, colored text,
+verbatim-like source code, bibliography entries, and references to
+earlier material.
+
+\subsection{Example Results}
+
+Table~\ref{tab:results} compares three hypothetical methods.
+The values are illustrative rather than empirical.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Example performance measurements.}
+  \label{tab:results}
+  \small
+  \begin{tabular}{
+    >{\raggedright\arraybackslash}p{16mm}
+    c
+    c
+    c
+  }
+    \toprule
+    Method
+      & Accuracy
+      & Time (s)
+      & Rank\\
+    \midrule
+    Baseline
+      & $begin:math:text$0\.812$end:math:text$
+      & $begin:math:text$2\.31$end:math:text$
+      & 3\\
+    Proposed
+      & $begin:math:text$\\mathbf\{0\.947\}$end:math:text$
+      & $begin:math:text$1\.84$end:math:text$
+      & $begin:math:text$\\mathbf\{1\}$end:math:text$\\
+    Robust
+      & $begin:math:text$0\.921$end:math:text$
+      & $begin:math:text$2\.05$end:math:text$
+      & 2\\
+    \bottomrule
+  \end{tabular}
 \end{table}
 
-\lipsum[8]
+A more structurally complex table is shown below.
 
-\section{Conclusion and Future Work}
+\begin{table}[htbp]
+  \centering
+  \caption{Grouped measurements with merged cells.}
+  \label{tab:grouped}
+  \small
+  \begin{tabular}{llrr}
+    \toprule
+    Group & Condition & Mean & Std. dev.\\
+    \midrule
+    \multirow{2}{*}{A}
+      & Control   & 12.4 & 1.8\\
+      & Treatment & 15.7 & 1.3\\
+    \cmidrule(lr){1-4}
+    \multirow{2}{*}{B}
+      & Control   & 11.9 & 2.1\\
+      & Treatment & 16.2 & 1.5\\
+    \bottomrule
+  \end{tabular}
+\end{table}
 
-\textit{[Replace this section with your conclusions, summarizing the key findings and their implications, and outlining directions for future work.]}
+The main result in Table~\ref{tab:results} is consistent with the
+optimization model in Equation~\eqref{eq:objective}.
+The internal figure appears as Figure~\ref{fig:internal-figure},
+while the mathematical result is stated in
+Theorem~\ref{thm:mean}.
 
-\lipsum[9]
+Color rendering can be checked with
+\textcolor{blue}{blue text},
+\textcolor{darkgreen}{green text},
+and
+\colorbox{yellow!35}{highlighted text}.
+These colors are generated internally and require no external files.
 
-\section{Declaration}
-\fontsize{11}{13}\selectfont
+\subsection{Algorithmic Pseudocode}
 
-\textbf{Conflict of Interest: } [State any conflicts of interest, or declare that the authors have none.]
+The following source-code listing tests indentation, line numbering,
+comments, mathematical-looking identifiers, and line wrapping.
 
-\textbf{Author Contribution:}
-[Describe each author's contribution, e.g., using CRediT taxonomy roles such as conceptualization, methodology, data collection, analysis, writing, and supervision.]
+\begin{lstlisting}[language=Python,caption={A compact gradient-descent example.},label={lst:gradient}]
+def gradient_descent(x0, learning_rate=0.1,
+                     tolerance=1e-8, max_iter=1000):
+    """Minimize f(x) = (x - 3)^2."""
+    x = float(x0)
 
-% Example for references section
+    for iteration in range(max_iter):
+        gradient = 2.0 * (x - 3.0)
+        candidate = x - learning_rate * gradient
 
-\printbibliography  % Use BibLaTeX for printing bibliography
+        # Stop when the update is sufficiently small.
+        if abs(candidate - x) < tolerance:
+            return candidate, iteration + 1
+
+        x = candidate
+
+    return x, max_iter
+\end{lstlisting}
+
+Listing~\ref{lst:gradient} is not executed by \LaTeX; it is included
+only to test syntax highlighting and verbatim-like content.
+Characters that normally have special meanings, such as
+\verb|#|, \verb|_|, \verb|%|, and \verb|\|, can be printed inside
+the \verb|\verb| command.
+
+\subsection{Discussion}
+
+The examples demonstrate several kinds of document structure.
+Section~\ref{sec:introduction} introduced text formatting and lists.
+Section~\ref{sec:methods} tested mathematical environments and an
+internal drawing. Section~\ref{sec:results} added tables, code, color,
+and references.
+
+Bibliographic citations can be written in textual form, as in
+Lamport's original description of \LaTeX{}~\cite{lamport1994},
+or grouped together~\cite{knuth1984,mittelbach2004}.
+The bibliography below is embedded directly in this source file,
+so no Bib\TeX{} database is needed.
+
+\subsection{Conclusion}
+
+This document provides a reproducible test for a general-purpose
+\LaTeX{} editor. Successful compilation indicates support for:
+
+\begin{enumerate}[label=\arabic*.]
+  \item common paper structure and typography;
+  \item mathematical notation and theorem environments;
+  \item labels, references, hyperlinks, and citations;
+  \item tables, internally generated graphics, and source listings;
+  \item headers, footers, captions, colors, and page breaks.
+\end{enumerate}
+
+The explicit page boundaries also make page navigation, PDF preview,
+zooming, synchronization, and page-number rendering easy to inspect.
+
+\section*{Acknowledgments}
+
+The author thanks the maintainers of \TeX{} and \LaTeX{} for providing
+a stable system for reproducible scientific typesetting.
+
+\begin{thebibliography}{9}
+
+\bibitem{knuth1984}
+Donald E. Knuth.
+\newblock \emph{The \TeX book}.
+\newblock Addison--Wesley, 1984.
+
+\bibitem{lamport1994}
+Leslie Lamport.
+\newblock \emph{\LaTeX: A Document Preparation System}.
+\newblock Addison--Wesley, second edition, 1994.
+
+\bibitem{mittelbach2004}
+Frank Mittelbach and Michel Goossens.
+\newblock \emph{The \LaTeX{} Companion}.
+\newblock Addison--Wesley, second edition, 2004.
+
+\end{thebibliography}
 
 \end{document}
